@@ -1,0 +1,19 @@
+name: C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up CMake
+      uses: lukka/get-cmake@v3
+      with:
+        cmake-version: '3.18.2'
+    - name: Configure CMake
+      run: cmake -H. -Bbuild
+    - name: Build
+      run: cmake --build build
+    - name: Run Tests
+      run: ctest --test-dir build
