@@ -26,4 +26,9 @@ func TestArray(t *testing.T) {
 	if value != "test" {
 		t.Errorf("expected value %s, got %v", "test", value)
 	}
+
+	err = arr.Set(size, "out of bounds")
+	if err == nil {
+		t.Error("expected error, got nil")
+	}
 }
