@@ -1,0 +1,62 @@
+# Build directories
+/build/
+/cmake-build-debug/
+/out/
+
+# CMake-specific files
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Google Test
+/gtest/
+gtest-*
+
+# Compiled object files, shared libraries, executables, etc.
+/*.o
+/*.obj
+/*.so
+/*.exe
+/*.dll
+/*.dylib
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# IDE-specific files (for common IDEs)
+# CLion
+.idea/
+# Visual Studio Code
+.vscode/
+# Xcode
+*.xcworkspace
+*.xcuserdata
+
+# Other common files to ignore
+*.DS_Store
+*.bak
+*.swp
+*.swo
+*.class
+*.pyc
+*.pyo
+*.pdb
+
+# Documentation and output directories
+/docs/doxygen/
+*.pdf
+
+# Temporary files
+/tmp
+*.tmp
+
+# OS-specific files
+# macOS
+.DS_Store
+.Trashes
+# Windows
+Thumbs.db
+Desktop.ini
