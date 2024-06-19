@@ -17,4 +17,13 @@ func TestArray(t *testing.T) {
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
 	}
+
+	value, err := arr.Get(0)
+	if err != nil {
+		t.Errorf("unexpected error: %v", err)
+	}
+
+	if value != "test" {
+		t.Errorf("expected value %s, got %v", "test", value)
+	}
 }
