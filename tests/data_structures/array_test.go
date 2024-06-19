@@ -31,4 +31,9 @@ func TestArray(t *testing.T) {
 	if err == nil {
 		t.Error("expected error, got nil")
 	}
+
+	_, err = arr.Get(size)
+	if err == nil {
+		t.Error("expected error, got nil")
+	}
 }
