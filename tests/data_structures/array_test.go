@@ -12,4 +12,9 @@ func TestArray(t *testing.T) {
 	if arr.Size() != size {
 		t.Errorf("expected size %d, got %d", size, arr.Size())
 	}
+
+	err := arr.Set(0, "test")
+	if err != nil {
+		t.Errorf("unexpected error: %v", err)
+	}
 }
