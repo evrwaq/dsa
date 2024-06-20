@@ -7,23 +7,23 @@ import (
 
 func TestArray(t *testing.T) {
 	size := 10
-	arr := data_structures.NewArray(size)
+	array := data_structures.NewArray(size)
 
 	t.Run("Initial Size", func(t *testing.T) {
-		if arr.Size() != size {
-			t.Errorf("expected size %d, got %d", size, arr.Size())
+		if array.Size() != size {
+			t.Errorf("expected size %d, got %d", size, array.Size())
 		}
 	})
 
 	t.Run("Set and Get First Element", func(t *testing.T) {
-		err := arr.Set(0, "test")
-		if err != nil {
-			t.Errorf("unexpected error: %v", err)
+		error := array.Set(0, "test")
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
 		}
 
-		value, err := arr.Get(0)
-		if err != nil {
-			t.Errorf("unexpected error: %v", err)
+		value, error := array.Get(0)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
 		}
 
 		if value != "test" {
@@ -32,15 +32,15 @@ func TestArray(t *testing.T) {
 	})
 
 	t.Run("Set Out of Bounds", func(t *testing.T) {
-		err := arr.Set(size, "out of bounds")
-		if err == nil {
+		error := array.Set(size, "out of bounds")
+		if error == nil {
 			t.Error("expected error, got nil")
 		}
 	})
 
 	t.Run("Get Out of Bounds", func(t *testing.T) {
-		_, err := arr.Get(size)
-		if err == nil {
+		_, error := array.Get(size)
+		if error == nil {
 			t.Error("expected error, got nil")
 		}
 	})

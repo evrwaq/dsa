@@ -12,21 +12,21 @@ func NewArray(size int) *Array {
 	}
 }
 
-func (a *Array) Set(index int, value interface{}) error {
-	if index < 0 || index >= len(a.elements) {
+func (array *Array) Set(index int, value interface{}) error {
+	if index < 0 || index >= len(array.elements) {
 		return errors.New("index out of bounds")
 	}
-	a.elements[index] = value
+	array.elements[index] = value
 	return nil
 }
 
-func (a *Array) Get(index int) (interface{}, error) {
-	if index < 0 || index >= len(a.elements) {
+func (array *Array) Get(index int) (interface{}, error) {
+	if index < 0 || index >= len(array.elements) {
 		return nil, errors.New("index out of bounds")
 	}
-	return a.elements[index], nil
+	return array.elements[index], nil
 }
 
-func (a *Array) Size() int {
-	return len(a.elements)
+func (array *Array) Size() int {
+	return len(array.elements)
 }
