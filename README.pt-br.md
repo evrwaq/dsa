@@ -8,6 +8,8 @@ Este projeto tem como objetivo demonstrar as principais estruturas de dados e al
 
 ### Array
 
+[W3S - Array](https://www.w3schools.com/dsa/dsa_data_arrays.php)
+
 Um Array é uma estrutura de dados que armazena uma coleção de elementos em locais de memória contíguos. Cada elemento pode ser acessado diretamente pelo seu índice, o que torna a operação de acesso muito rápida. No entanto, a inserção e a remoção de elementos podem ser demoradas, pois podem exigir o deslocamento de outros elementos.
 
 **Características:**
