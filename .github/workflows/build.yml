@@ -20,7 +20,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: '1.22' # Use the appropriate Go version for your project
+          go-version: '1.22'
 
       - name: Install dependencies
         run: go mod download
@@ -37,6 +37,7 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    needs: build-and-test
 
     steps:
       - name: Checkout repository
@@ -44,16 +45,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: '1.22' # Use the appropriate Go version for your project
-
       - name: Download coverage report
         uses: actions/download-artifact@v3
         with:
           name: coverage-report
-          path: ./coverage.out
+          path: ./
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.22'
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
