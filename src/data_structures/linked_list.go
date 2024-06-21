@@ -14,10 +14,24 @@ func NewLinkedList() *LinkedList {
 	return &LinkedList{nil, 0}
 }
 
-func (ll *LinkedList) Size() int {
-	return ll.size
+func (linkedList *LinkedList) Size() int {
+	return linkedList.size
 }
 
-func (ll *LinkedList) IsEmpty() bool {
-	return ll.size == 0
+func (linkedList *LinkedList) IsEmpty() bool {
+	return linkedList.size == 0
+}
+
+func (linkedList *LinkedList) Add(value interface{}) {
+	newNode := &Node{value, nil}
+	if linkedList.head == nil {
+		linkedList.head = newNode
+	} else {
+		current := linkedList.head
+		for current.next != nil {
+			current = current.next
+		}
+		current.next = newNode
+	}
+	linkedList.size++
 }
