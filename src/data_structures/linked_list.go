@@ -48,3 +48,23 @@ func (linkedList *LinkedList) Get(index int) (interface{}, error) {
 	}
 	return current.value, nil
 }
+
+func (linkedList *LinkedList) Remove(index int) (interface{}, error) {
+	if index < 0 || index >= linkedList.size {
+		return nil, errors.New("index out of bounds")
+	}
+	var removedValue interface{}
+	if index == 0 {
+		removedValue = linkedList.head.value
+		linkedList.head = linkedList.head.next
+	} else {
+		current := linkedList.head
+		for i := 0; i < index-1; i++ {
+			current = current.next
+		}
+		removedValue = current.next.value
+		current.next = current.next.next
+	}
+	linkedList.size--
+	return removedValue, nil
+}
