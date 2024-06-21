@@ -126,4 +126,11 @@ func TestLinkedListRemove(t *testing.T) {
 			t.Errorf("expected size 0, got %d", linkedList.Size())
 		}
 	})
+
+	t.Run("Remove out of bounds", func(t *testing.T) {
+		_, error := linkedList.Remove(0)
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
