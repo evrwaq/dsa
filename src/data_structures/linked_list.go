@@ -1,5 +1,7 @@
 package data_structures
 
+import "errors"
+
 type Node struct {
 	value interface{}
 	next  *Node
@@ -34,4 +36,15 @@ func (linkedList *LinkedList) Add(value interface{}) {
 		current.next = newNode
 	}
 	linkedList.size++
+}
+
+func (linkedList *LinkedList) Get(index int) (interface{}, error) {
+	if index < 0 || index >= linkedList.size {
+		return nil, errors.New("index out of bounds")
+	}
+	current := linkedList.head
+	for i := 0; i < index; i++ {
+		current = current.next
+	}
+	return current.value, nil
 }
