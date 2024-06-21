@@ -77,4 +77,11 @@ func TestLinkedListGet(t *testing.T) {
 			t.Errorf("expected value 3, got %v", value)
 		}
 	})
+
+	t.Run("Get out of bounds", func(t *testing.T) {
+		_, error := linkedList.Get(3)
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
