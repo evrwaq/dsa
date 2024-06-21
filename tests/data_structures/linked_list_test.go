@@ -45,3 +45,36 @@ func TestLinkedListAdd(t *testing.T) {
 		}
 	})
 }
+
+func TestLinkedListGet(t *testing.T) {
+	linkedList := data_structures.NewLinkedList()
+	linkedList.Add(1)
+	linkedList.Add(2)
+	linkedList.Add(3)
+
+	t.Run("Get elements", func(t *testing.T) {
+		value, error := linkedList.Get(0)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 1 {
+			t.Errorf("expected value 1, got %v", value)
+		}
+
+		value, error = linkedList.Get(1)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 2 {
+			t.Errorf("expected value 2, got %v", value)
+		}
+
+		value, error = linkedList.Get(2)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 3 {
+			t.Errorf("expected value 3, got %v", value)
+		}
+	})
+}
