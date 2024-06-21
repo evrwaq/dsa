@@ -13,4 +13,10 @@ func TestNewLinkedList(t *testing.T) {
 			t.Errorf("expected size 0, got %d", linked_list.Size())
 		}
 	})
+
+	t.Run("IsEmpty on new list", func(t *testing.T) {
+		if !linked_list.IsEmpty() {
+			t.Error("expected list to be empty")
+		}
+	})
 }
