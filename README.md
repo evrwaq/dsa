@@ -8,8 +8,6 @@ This project aims to demonstrate the main data structures and algorithms, as wel
 
 ### Array
 
-[W3S - Array](https://www.w3schools.com/dsa/dsa_data_arrays.php)
-
 An Array is a data structure that stores a collection of elements in contiguous memory locations. Each element can be directly accessed by its index, making access operations very fast. However, insertion and removal of elements can be time-consuming as they may require shifting other elements.
 
 **Characteristics:**
