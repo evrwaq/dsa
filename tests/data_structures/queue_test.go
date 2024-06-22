@@ -86,4 +86,11 @@ func TestQueueDequeue(t *testing.T) {
 			t.Errorf("expected size 0, got %d", queue.Size())
 		}
 	})
+
+	t.Run("Dequeue from empty queue", func(t *testing.T) {
+		_, error := queue.Dequeue()
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
