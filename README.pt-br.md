@@ -76,6 +76,30 @@ Uma Pilha (Stack) é uma estrutura de dados linear que segue o princípio de Úl
 **Implementação em Go:**
 A implementação da estrutura de dados Pilha em Go pode ser encontrada no arquivo [`stack.go`](src/data_structures/stack.go).
 
+### Fila
+
+Uma Fila (Queue) é uma estrutura de dados linear que segue o princípio de Primeiro a Entrar, Primeiro a Sair (FIFO). Elementos podem ser adicionados no final e removidos do início da fila.
+
+**Características:**
+- **FIFO**: Ordenação de Primeiro a Entrar, Primeiro a Sair.
+- **Tamanho Variável**: A fila pode crescer e diminuir dinamicamente.
+- **Acesso ao Início e ao Fim**: O acesso aos elementos é feito apenas no início e no fim da fila.
+
+**Operações principais e suas complexidades:**
+- **Enqueue**:
+  - O(1) - tempo constante.
+- **Dequeue**:
+  - O(1) - tempo constante.
+- **Peek**:
+  - O(1) - tempo constante.
+- **Size**:
+  - O(1) - tempo constante.
+- **IsEmpty**:
+  - O(1) - tempo constante.
+
+**Implementação em Go:**
+A implementação da estrutura de dados Fila em Go pode ser encontrada no arquivo [`queue.go`](src/data_structures/queue.go).
+
 ## Algorithms
 
 (Em breve)

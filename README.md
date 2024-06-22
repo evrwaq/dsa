@@ -76,6 +76,30 @@ A Stack is a linear data structure that follows the Last In First Out (LIFO) pri
 **Implementation in Go:**
 The implementation of the Stack data structure in Go can be found in the file [`stack.go`](src/data_structures/stack.go).
 
+### Queue
+
+A Queue is a linear data structure that follows the First In First Out (FIFO) principle. Elements can be added at the end and removed from the front of the queue.
+
+**Characteristics:**
+- **FIFO**: First In First Out ordering.
+- **Variable Size**: The queue can grow and shrink dynamically.
+- **Front and Rear Access**: Access to elements is only at the front and rear of the queue.
+
+**Main Operations and Their Complexities:**
+- **Enqueue**:
+  - O(1) - constant time.
+- **Dequeue**:
+  - O(1) - constant time.
+- **Peek**:
+  - O(1) - constant time.
+- **Size**:
+  - O(1) - constant time.
+- **IsEmpty**:
+  - O(1) - constant time.
+
+**Implementation in Go:**
+The implementation of the Queue data structure in Go can be found in the file [`queue.go`](src/data_structures/queue.go).
+
 ## Algorithms
 
 (Coming soon)
