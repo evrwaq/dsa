@@ -29,6 +29,29 @@ An Array is a data structure that stores a collection of elements in contiguous 
 **Implementation in Go:**
 The implementation of the Array data structure in Go can be found in the [`array.go`](src/data_structures/array.go) file.
 
+### Linked List (English)
+
+A Linked List is a linear data structure where each element is a node that contains a value and a reference (or pointer) to the next node in the sequence.
+
+**Characteristics:**
+- **Chain of Nodes**: Each node points to the next node.
+- **Variable Size**: The list can grow and shrink dynamically.
+- **Sequential Access**: Access to elements is sequential, starting from the first node.
+
+**Main Operations and Their Complexities:**
+- **Access**:
+  - Best case: O(1) - constant time (first element).
+  - Worst case: O(n) - linear time (last element).
+- **Insertion**:
+  - Best case: O(1) - constant time (insertion at the beginning).
+  - Worst case: O(n) - linear time (insertion at the end).
+- **Removal**:
+  - Best case: O(1) - constant time (removal from the beginning).
+  - Worst case: O(n) - linear time (removal from the end).
+
+**Implementation in Go:**
+The implementation of the Linked List data structure in Go can be found in the file [`linked_list.go`](src/data_structures/linked_list.go).
+
 ## Algorithms
 
 (Coming soon)
