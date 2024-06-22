@@ -45,3 +45,45 @@ func TestQueueEnqueue(t *testing.T) {
 		}
 	})
 }
+
+func TestQueueDequeue(t *testing.T) {
+	queue := data_structures.NewQueue()
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
+
+	t.Run("Dequeue elements", func(t *testing.T) {
+		value, error := queue.Dequeue()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 1 {
+			t.Errorf("expected value 1, got %v", value)
+		}
+		if queue.Size() != 2 {
+			t.Errorf("expected size 2, got %d", queue.Size())
+		}
+
+		value, error = queue.Dequeue()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 2 {
+			t.Errorf("expected value 2, got %v", value)
+		}
+		if queue.Size() != 1 {
+			t.Errorf("expected size 1, got %d", queue.Size())
+		}
+
+		value, error = queue.Dequeue()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 3 {
+			t.Errorf("expected value 3, got %v", value)
+		}
+		if queue.Size() != 0 {
+			t.Errorf("expected size 0, got %d", queue.Size())
+		}
+	})
+}
