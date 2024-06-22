@@ -52,6 +52,30 @@ A Linked List is a linear data structure where each element is a node that conta
 **Implementation in Go:**
 The implementation of the Linked List data structure in Go can be found in the file [`linked_list.go`](src/data_structures/linked_list.go).
 
+### Stack
+
+A Stack is a linear data structure that follows the Last In First Out (LIFO) principle. Elements can be added and removed only from the top of the stack.
+
+**Characteristics:**
+- **LIFO**: Last In First Out ordering.
+- **Variable Size**: The stack can grow and shrink dynamically.
+- **Top Access**: Access to elements is only at the top of the stack.
+
+**Main Operations and Their Complexities:**
+- **Push**:
+  - O(1) - constant time.
+- **Pop**:
+  - O(1) - constant time.
+- **Peek**:
+  - O(1) - constant time.
+- **Size**:
+  - O(1) - constant time.
+- **IsEmpty**:
+  - O(1) - constant time.
+
+**Implementation in Go:**
+The implementation of the Stack data structure in Go can be found in the file [`stack.go`](src/data_structures/stack.go).
+
 ## Algorithms
 
 (Coming soon)

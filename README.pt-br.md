@@ -29,7 +29,7 @@ Um Array é uma estrutura de dados que armazena uma coleção de elementos em lo
 **Implementação em Go:**
 A implementação da estrutura de dados Array em Go pode ser encontrada no arquivo [`array.go`](src/data_structures/array.go).
 
-### Lista Ligada/Encadeada (Português)
+### Lista Ligada/Encadeada
 
 Uma Lista Ligada/Encadeada (Linked List) é uma estrutura de dados linear onde cada elemento é um nó que contém um valor e uma referência (ou ponteiro) para o próximo nó na sequência.
 
@@ -51,6 +51,30 @@ Uma Lista Ligada/Encadeada (Linked List) é uma estrutura de dados linear onde c
 
 **Implementação em Go:**
 A implementação da estrutura de dados Linked List em Go pode ser encontrada no arquivo [`linked_list.go`](src/data_structures/linked_list.go).
+
+### Pilha
+
+Uma Pilha (Stack) é uma estrutura de dados linear que segue o princípio de Último a Entrar, Primeiro a Sair (LIFO). Elementos podem ser adicionados e removidos apenas do topo da pilha.
+
+**Características:**
+- **LIFO**: Ordenação de Último a Entrar, Primeiro a Sair.
+- **Tamanho Variável**: A pilha pode crescer e diminuir dinamicamente.
+- **Acesso ao Topo**: O acesso aos elementos é feito apenas no topo da pilha.
+
+**Operações principais e suas complexidades:**
+- **Push**:
+  - O(1) - tempo constante.
+- **Pop**:
+  - O(1) - tempo constante.
+- **Peek**:
+  - O(1) - tempo constante.
+- **Size**:
+  - O(1) - tempo constante.
+- **IsEmpty**:
+  - O(1) - tempo constante.
+
+**Implementação em Go:**
+A implementação da estrutura de dados Pilha em Go pode ser encontrada no arquivo [`stack.go`](src/data_structures/stack.go).
 
 ## Algorithms
 
