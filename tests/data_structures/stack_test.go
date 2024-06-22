@@ -45,3 +45,45 @@ func TestStackPush(t *testing.T) {
 		}
 	})
 }
+
+func TestStackPop(t *testing.T) {
+	stack := data_structures.NewStack()
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+
+	t.Run("Pop elements", func(t *testing.T) {
+		value, error := stack.Pop()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 3 {
+			t.Errorf("expected value 3, got %v", value)
+		}
+		if stack.Size() != 2 {
+			t.Errorf("expected size 2, got %d", stack.Size())
+		}
+
+		value, error = stack.Pop()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 2 {
+			t.Errorf("expected value 2, got %v", value)
+		}
+		if stack.Size() != 1 {
+			t.Errorf("expected size 1, got %d", stack.Size())
+		}
+
+		value, error = stack.Pop()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 1 {
+			t.Errorf("expected value 1, got %v", value)
+		}
+		if stack.Size() != 0 {
+			t.Errorf("expected size 0, got %d", stack.Size())
+		}
+	})
+}
