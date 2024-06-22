@@ -30,3 +30,10 @@ func (stack *Stack) Pop() (interface{}, error) {
 	stack.elements = stack.elements[:len(stack.elements)-1]
 	return value, nil
 }
+
+func (stack *Stack) Peek() (interface{}, error) {
+	if stack.IsEmpty() {
+		return nil, errors.New("stack is empty")
+	}
+	return stack.elements[len(stack.elements)-1], nil
+}
