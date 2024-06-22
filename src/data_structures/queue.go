@@ -15,3 +15,7 @@ func (queue *Queue) Size() int {
 func (queue *Queue) IsEmpty() bool {
 	return len(queue.elements) == 0
 }
+
+func (queue *Queue) Enqueue(value interface{}) {
+	queue.elements = append(queue.elements, value)
+}
