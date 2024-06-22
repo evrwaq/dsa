@@ -30,3 +30,10 @@ func (queue *Queue) Dequeue() (interface{}, error) {
 	queue.elements = queue.elements[1:]
 	return value, nil
 }
+
+func (queue *Queue) Peek() (interface{}, error) {
+	if queue.IsEmpty() {
+		return nil, errors.New("queue is empty")
+	}
+	return queue.elements[0], nil
+}
