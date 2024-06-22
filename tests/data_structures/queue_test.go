@@ -94,3 +94,23 @@ func TestQueueDequeue(t *testing.T) {
 		}
 	})
 }
+
+func TestQueuePeek(t *testing.T) {
+	queue := data_structures.NewQueue()
+	queue.Enqueue(1)
+	queue.Enqueue(2)
+	queue.Enqueue(3)
+
+	t.Run("Peek element", func(t *testing.T) {
+		value, err := queue.Peek()
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		if value != 1 {
+			t.Errorf("expected value 1, got %v", value)
+		}
+		if queue.Size() != 3 {
+			t.Errorf("expected size 3, got %d", queue.Size())
+		}
+	})
+}
