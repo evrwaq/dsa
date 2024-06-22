@@ -113,4 +113,14 @@ func TestQueuePeek(t *testing.T) {
 			t.Errorf("expected size 3, got %d", queue.Size())
 		}
 	})
+
+	t.Run("Peek from empty queue", func(t *testing.T) {
+		queue.Dequeue()
+		queue.Dequeue()
+		queue.Dequeue()
+		_, error := queue.Peek()
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
