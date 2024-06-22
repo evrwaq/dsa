@@ -15,3 +15,7 @@ func (stack *Stack) Size() int {
 func (stack *Stack) IsEmpty() bool {
 	return len(stack.elements) == 0
 }
+
+func (stack *Stack) Push(value interface{}) {
+	stack.elements = append(stack.elements, value)
+}
