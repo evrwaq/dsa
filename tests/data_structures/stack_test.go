@@ -86,4 +86,11 @@ func TestStackPop(t *testing.T) {
 			t.Errorf("expected size 0, got %d", stack.Size())
 		}
 	})
+
+	t.Run("Pop from empty stack", func(t *testing.T) {
+		_, error := stack.Pop()
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
