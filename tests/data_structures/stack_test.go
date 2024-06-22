@@ -113,4 +113,14 @@ func TestStackPeek(t *testing.T) {
 			t.Errorf("expected size 3, got %d", stack.Size())
 		}
 	})
+
+	t.Run("Peek from empty stack", func(t *testing.T) {
+		stack.Pop()
+		stack.Pop()
+		stack.Pop()
+		_, error := stack.Peek()
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
