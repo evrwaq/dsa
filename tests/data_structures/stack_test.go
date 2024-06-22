@@ -94,3 +94,23 @@ func TestStackPop(t *testing.T) {
 		}
 	})
 }
+
+func TestStackPeek(t *testing.T) {
+	stack := data_structures.NewStack()
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+
+	t.Run("Peek element", func(t *testing.T) {
+		value, error := stack.Peek()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 3 {
+			t.Errorf("expected value 3, got %v", value)
+		}
+		if stack.Size() != 3 {
+			t.Errorf("expected size 3, got %d", stack.Size())
+		}
+	})
+}
