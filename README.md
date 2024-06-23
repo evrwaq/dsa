@@ -100,6 +100,32 @@ A Queue is a linear data structure that follows the First In First Out (FIFO) pr
 **Implementation in Go:**
 The implementation of the Queue data structure in Go can be found in the file [`queue.go`](src/data_structures/queue.go).
 
+### Deque
+
+A Deque (Double-ended Queue) is a linear data structure that allows insertion and removal of elements from both ends, front and back.
+
+**Characteristics:**
+- **Double-ended**: Elements can be added or removed from both ends.
+- **Variable Size**: The deque can grow and shrink dynamically.
+- **Front and Rear Access**: Access to elements is at both the front and rear of the deque.
+
+**Main Operations and Their Complexities:**
+- **AddFront**:
+  - O(n) - linear time.
+- **AddBack**:
+  - O(1) - constant time.
+- **RemoveFront**:
+  - O(1) - constant time.
+- **RemoveBack**:
+  - O(1) - constant time.
+- **Size**:
+  - O(1) - constant time.
+- **IsEmpty**:
+  - O(1) - constant time.
+
+**Implementation in Go:**
+The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/deque.go).
+
 ## Algorithms
 
 (Coming soon)

@@ -100,6 +100,32 @@ Uma Fila (Queue) é uma estrutura de dados linear que segue o princípio de Prim
 **Implementação em Go:**
 A implementação da estrutura de dados Fila em Go pode ser encontrada no arquivo [`queue.go`](src/data_structures/queue.go).
 
+### Deque
+
+Um Deque (Double-ended Queue) é uma estrutura de dados linear que permite a inserção e remoção de elementos de ambas as extremidades, frente e trás.
+
+**Características:**
+- **Double-ended**: Elementos podem ser adicionados ou removidos de ambas as extremidades.
+- **Tamanho Variável**: O deque pode crescer e diminuir dinamicamente.
+- **Acesso à Frente e Trás**: O acesso aos elementos é feito tanto na frente quanto na parte traseira do deque.
+
+**Operações principais e suas complexidades:**
+- **AddFront**:
+  - O(n) - tempo linear.
+- **AddBack**:
+  - O(1) - tempo constante.
+- **RemoveFront**:
+  - O(1) - tempo constante.
+- **RemoveBack**:
+  - O(1) - tempo constante.
+- **Size**:
+  - O(1) - tempo constante.
+- **IsEmpty**:
+  - O(1) - tempo constante.
+
+**Implementação em Go:**
+A implementação da estrutura de dados Deque em Go pode ser encontrada no arquivo [`deque.go`](src/data_structures/deque.go).
+
 ## Algorithms
 
 (Em breve)
