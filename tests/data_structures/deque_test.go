@@ -45,3 +45,28 @@ func TestDequeAddFront(t *testing.T) {
 		}
 	})
 }
+
+func TestDequeAddBack(t *testing.T) {
+	deque := data_structures.NewDeque()
+
+	t.Run("AddBack elements", func(t *testing.T) {
+		deque.AddBack(1)
+		if deque.Size() != 1 {
+			t.Errorf("expected size 1, got %deque", deque.Size())
+		}
+
+		deque.AddBack(2)
+		if deque.Size() != 2 {
+			t.Errorf("expected size 2, got %deque", deque.Size())
+		}
+
+		deque.AddBack(3)
+		if deque.Size() != 3 {
+			t.Errorf("expected size 3, got %deque", deque.Size())
+		}
+
+		if deque.IsEmpty() {
+			t.Error("expected deque to not be empty")
+		}
+	})
+}
