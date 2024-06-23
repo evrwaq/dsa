@@ -34,3 +34,12 @@ func (deque *Deque) RemoveFront() (interface{}, error) {
 	deque.elements = deque.elements[1:]
 	return value, nil
 }
+
+func (deque *Deque) RemoveBack() (interface{}, error) {
+	if deque.IsEmpty() {
+		return nil, errors.New("deque is empty")
+	}
+	value := deque.elements[len(deque.elements)-1]
+	deque.elements = deque.elements[:len(deque.elements)-1]
+	return value, nil
+}
