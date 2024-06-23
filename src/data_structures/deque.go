@@ -15,3 +15,7 @@ func (deque *Deque) Size() int {
 func (deque *Deque) IsEmpty() bool {
 	return len(deque.elements) == 0
 }
+
+func (deque *Deque) AddFront(value interface{}) {
+	deque.elements = append([]interface{}{value}, deque.elements...)
+}
