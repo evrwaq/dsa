@@ -1,5 +1,7 @@
 package data_structures
 
+import "errors"
+
 type Deque struct {
 	elements []interface{}
 }
@@ -22,4 +24,13 @@ func (deque *Deque) AddFront(value interface{}) {
 
 func (deque *Deque) AddBack(value interface{}) {
 	deque.elements = append(deque.elements, value)
+}
+
+func (deque *Deque) RemoveFront() (interface{}, error) {
+	if deque.IsEmpty() {
+		return nil, errors.New("deque is empty")
+	}
+	value := deque.elements[0]
+	deque.elements = deque.elements[1:]
+	return value, nil
 }
