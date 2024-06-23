@@ -160,4 +160,11 @@ func TestDequeRemoveBack(t *testing.T) {
 			t.Errorf("expected size 0, got %deque", deque.Size())
 		}
 	})
+
+	t.Run("RemoveBack from empty deque", func(t *testing.T) {
+		_, error := deque.RemoveBack()
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
