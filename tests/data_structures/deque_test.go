@@ -119,3 +119,45 @@ func TestDequeRemoveFront(t *testing.T) {
 		}
 	})
 }
+
+func TestDequeRemoveBack(t *testing.T) {
+	deque := data_structures.NewDeque()
+	deque.AddBack(1)
+	deque.AddBack(2)
+	deque.AddBack(3)
+
+	t.Run("RemoveBack elements", func(t *testing.T) {
+		value, error := deque.RemoveBack()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 3 {
+			t.Errorf("expected value 3, got %v", value)
+		}
+		if deque.Size() != 2 {
+			t.Errorf("expected size 2, got %deque", deque.Size())
+		}
+
+		value, error = deque.RemoveBack()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 2 {
+			t.Errorf("expected value 2, got %v", value)
+		}
+		if deque.Size() != 1 {
+			t.Errorf("expected size 1, got %deque", deque.Size())
+		}
+
+		value, error = deque.RemoveBack()
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 1 {
+			t.Errorf("expected value 1, got %v", value)
+		}
+		if deque.Size() != 0 {
+			t.Errorf("expected size 0, got %deque", deque.Size())
+		}
+	})
+}
