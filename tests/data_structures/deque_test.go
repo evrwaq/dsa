@@ -111,4 +111,11 @@ func TestDequeRemoveFront(t *testing.T) {
 			t.Errorf("expected size 0, got %deque", deque.Size())
 		}
 	})
+
+	t.Run("RemoveFront from empty deque", func(t *testing.T) {
+		_, error := deque.RemoveFront()
+		if error == nil {
+			t.Error("expected error, got nil")
+		}
+	})
 }
