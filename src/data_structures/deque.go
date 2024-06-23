@@ -19,3 +19,7 @@ func (deque *Deque) IsEmpty() bool {
 func (deque *Deque) AddFront(value interface{}) {
 	deque.elements = append([]interface{}{value}, deque.elements...)
 }
+
+func (deque *Deque) AddBack(value interface{}) {
+	deque.elements = append(deque.elements, value)
+}
