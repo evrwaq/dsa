@@ -91,17 +91,18 @@ func TestLinkedListRemove(t *testing.T) {
 	linkedList.Add(1)
 	linkedList.Add(2)
 	linkedList.Add(3)
+	linkedList.Add(4)
 
 	t.Run("Remove elements", func(t *testing.T) {
-		value, error := linkedList.Remove(1)
+		value, error := linkedList.Remove(2) // Remove element from the middle
 		if error != nil {
 			t.Errorf("unexpected error: %v", error)
 		}
-		if value != 2 {
-			t.Errorf("expected value 2, got %v", value)
+		if value != 3 {
+			t.Errorf("expected value 3, got %v", value)
 		}
-		if linkedList.Size() != 2 {
-			t.Errorf("expected size 2, got %d", linkedList.Size())
+		if linkedList.Size() != 3 {
+			t.Errorf("expected size 3, got %d", linkedList.Size())
 		}
 
 		value, error = linkedList.Remove(0)
@@ -111,6 +112,17 @@ func TestLinkedListRemove(t *testing.T) {
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
 		}
+		if linkedList.Size() != 2 {
+			t.Errorf("expected size 2, got %d", linkedList.Size())
+		}
+
+		value, error = linkedList.Remove(1)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		if value != 4 {
+			t.Errorf("expected value 4, got %v", value)
+		}
 		if linkedList.Size() != 1 {
 			t.Errorf("expected size 1, got %d", linkedList.Size())
 		}
@@ -119,8 +131,8 @@ func TestLinkedListRemove(t *testing.T) {
 		if error != nil {
 			t.Errorf("unexpected error: %v", error)
 		}
-		if value != 3 {
-			t.Errorf("expected value 3, got %v", value)
+		if value != 2 {
+			t.Errorf("expected value 2, got %v", value)
 		}
 		if linkedList.Size() != 0 {
 			t.Errorf("expected size 0, got %d", linkedList.Size())
