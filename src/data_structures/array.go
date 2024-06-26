@@ -2,6 +2,11 @@ package data_structures
 
 import "errors"
 
+// Error message constants
+const (
+	indexOutOfBoundsError = "index out of bounds"
+)
+
 // Array represents a fixed-size array data structure.
 type Array struct {
 	elements []interface{} // A slice to store the elements of the array.
@@ -26,7 +31,7 @@ func (array *Array) Size() int {
 func (array *Array) Set(index int, value interface{}) error {
 	// Check if the index is within the valid range.
 	if index < 0 || index >= len(array.elements) {
-		return errors.New("index out of bounds") // Return an error if the index is invalid.
+		return errors.New(indexOutOfBoundsError) // Return an error if the index is invalid.
 	}
 	array.elements[index] = value // Set the value at the specified index.
 	return nil
@@ -37,7 +42,7 @@ func (array *Array) Set(index int, value interface{}) error {
 func (array *Array) Get(index int) (interface{}, error) {
 	// Check if the index is within the valid range.
 	if index < 0 || index >= len(array.elements) {
-		return nil, errors.New("index out of bounds") // Return an error if the index is invalid.
+		return nil, errors.New(indexOutOfBoundsError) // Return an error if the index is invalid.
 	}
 	return array.elements[index], nil // Return the value at the specified index.
 }
