@@ -5,15 +5,18 @@ import (
 	"testing"
 )
 
+// TestNewStack tests the creation of a new stack and its initial size and empty state.
 func TestNewStack(t *testing.T) {
-	stack := data_structures.NewStack()
+	stack := data_structures.NewStack() // Create a new empty stack.
 
+	// Test the initial size of the stack.
 	t.Run("Initial Size", func(t *testing.T) {
 		if stack.Size() != 0 {
 			t.Errorf("expected size 0, got %d", stack.Size())
 		}
 	})
 
+	// Test if the new stack is empty.
 	t.Run("IsEmpty on new stack", func(t *testing.T) {
 		if !stack.IsEmpty() {
 			t.Error("expected stack to be empty")
@@ -21,10 +24,12 @@ func TestNewStack(t *testing.T) {
 	})
 }
 
+// TestStackPush tests the Push method of the stack.
 func TestStackPush(t *testing.T) {
-	stack := data_structures.NewStack()
+	stack := data_structures.NewStack() // Create a new empty stack.
 
 	t.Run("Push elements", func(t *testing.T) {
+		// Push elements onto the stack.
 		stack.Push(1)
 		if stack.Size() != 1 {
 			t.Errorf("expected size 1, got %d", stack.Size())
@@ -46,13 +51,15 @@ func TestStackPush(t *testing.T) {
 	})
 }
 
+// TestStackPop tests the Pop method of the stack.
 func TestStackPop(t *testing.T) {
-	stack := data_structures.NewStack()
+	stack := data_structures.NewStack() // Create a new empty stack.
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
 
 	t.Run("Pop elements", func(t *testing.T) {
+		// Pop elements from the stack and check the values and size.
 		value, error := stack.Pop()
 		if error != nil {
 			t.Errorf("unexpected error: %v", error)
@@ -87,6 +94,7 @@ func TestStackPop(t *testing.T) {
 		}
 	})
 
+	// Test popping from an empty stack.
 	t.Run("Pop from empty stack", func(t *testing.T) {
 		_, error := stack.Pop()
 		if error == nil {
@@ -95,13 +103,15 @@ func TestStackPop(t *testing.T) {
 	})
 }
 
+// TestStackPeek tests the Peek method of the stack.
 func TestStackPeek(t *testing.T) {
-	stack := data_structures.NewStack()
+	stack := data_structures.NewStack() // Create a new empty stack.
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
 
 	t.Run("Peek element", func(t *testing.T) {
+		// Peek at the top element of the stack without removing it.
 		value, error := stack.Peek()
 		if error != nil {
 			t.Errorf("unexpected error: %v", error)
@@ -114,6 +124,7 @@ func TestStackPeek(t *testing.T) {
 		}
 	})
 
+	// Test peeking from an empty stack.
 	t.Run("Peek from empty stack", func(t *testing.T) {
 		stack.Pop()
 		stack.Pop()
