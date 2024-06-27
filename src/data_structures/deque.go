@@ -2,9 +2,6 @@ package data_structures
 
 import "errors"
 
-// Error message constants
-const dequeEmptyError = "deque is empty"
-
 // Deque represents a double-ended queue data structure that holds elements.
 type Deque struct {
 	elements []interface{} // A slice to store the deque elements.
@@ -44,7 +41,7 @@ func (deque *Deque) AddBack(value interface{}) {
 func (deque *Deque) RemoveFront() (interface{}, error) {
 	// Check if the deque is empty.
 	if deque.IsEmpty() {
-		return nil, errors.New(dequeEmptyError) // Return an error if the deque is empty.
+		return nil, errors.New(DequeEmptyError) // Return an error if the deque is empty.
 	}
 	// Get the value of the front element.
 	value := deque.elements[0]
@@ -58,7 +55,7 @@ func (deque *Deque) RemoveFront() (interface{}, error) {
 func (deque *Deque) RemoveBack() (interface{}, error) {
 	// Check if the deque is empty.
 	if deque.IsEmpty() {
-		return nil, errors.New(dequeEmptyError) // Return an error if the deque is empty.
+		return nil, errors.New(DequeEmptyError) // Return an error if the deque is empty.
 	}
 	// Get the value of the back element.
 	value := deque.elements[len(deque.elements)-1]
@@ -72,7 +69,7 @@ func (deque *Deque) RemoveBack() (interface{}, error) {
 func (deque *Deque) PeekFront() (interface{}, error) {
 	// Check if the deque is empty.
 	if deque.IsEmpty() {
-		return nil, errors.New(dequeEmptyError) // Return an error if the deque is empty.
+		return nil, errors.New(DequeEmptyError) // Return an error if the deque is empty.
 	}
 	// Return the value of the front element without removing it.
 	return deque.elements[0], nil
@@ -83,7 +80,7 @@ func (deque *Deque) PeekFront() (interface{}, error) {
 func (deque *Deque) PeekBack() (interface{}, error) {
 	// Check if the deque is empty.
 	if deque.IsEmpty() {
-		return nil, errors.New(dequeEmptyError) // Return an error if the deque is empty.
+		return nil, errors.New(DequeEmptyError) // Return an error if the deque is empty.
 	}
 	// Return the value of the back element without removing it.
 	return deque.elements[len(deque.elements)-1], nil

@@ -89,7 +89,7 @@ func TestDequeRemoveFront(t *testing.T) {
 		// Remove elements from the front of the deque and check the values and size.
 		value, error := deque.RemoveFront()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -100,7 +100,7 @@ func TestDequeRemoveFront(t *testing.T) {
 
 		value, error = deque.RemoveFront()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -111,7 +111,7 @@ func TestDequeRemoveFront(t *testing.T) {
 
 		value, error = deque.RemoveFront()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -125,7 +125,7 @@ func TestDequeRemoveFront(t *testing.T) {
 	t.Run("RemoveFront from empty deque", func(t *testing.T) {
 		_, error := deque.RemoveFront()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
@@ -141,7 +141,7 @@ func TestDequeRemoveBack(t *testing.T) {
 		// Remove elements from the back of the deque and check the values and size.
 		value, error := deque.RemoveBack()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -152,7 +152,7 @@ func TestDequeRemoveBack(t *testing.T) {
 
 		value, error = deque.RemoveBack()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -163,7 +163,7 @@ func TestDequeRemoveBack(t *testing.T) {
 
 		value, error = deque.RemoveBack()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -177,7 +177,7 @@ func TestDequeRemoveBack(t *testing.T) {
 	t.Run("RemoveBack from empty deque", func(t *testing.T) {
 		_, error := deque.RemoveBack()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
@@ -193,7 +193,7 @@ func TestDequePeekFront(t *testing.T) {
 		// Peek at the front element of the deque without removing it.
 		value, error := deque.PeekFront()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -210,7 +210,7 @@ func TestDequePeekFront(t *testing.T) {
 		deque.RemoveFront()
 		_, error := deque.PeekFront()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
@@ -226,7 +226,7 @@ func TestDequePeekBack(t *testing.T) {
 		// Peek at the back element of the deque without removing it.
 		value, error := deque.PeekBack()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -243,7 +243,7 @@ func TestDequePeekBack(t *testing.T) {
 		deque.RemoveBack()
 		_, error := deque.PeekBack()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
