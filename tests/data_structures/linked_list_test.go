@@ -62,7 +62,7 @@ func TestLinkedListGet(t *testing.T) {
 	t.Run("Get elements", func(t *testing.T) {
 		value, error := linkedList.Get(0)
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -70,7 +70,7 @@ func TestLinkedListGet(t *testing.T) {
 
 		value, error = linkedList.Get(1)
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -78,7 +78,7 @@ func TestLinkedListGet(t *testing.T) {
 
 		value, error = linkedList.Get(2)
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -89,7 +89,7 @@ func TestLinkedListGet(t *testing.T) {
 	t.Run("Get out of bounds", func(t *testing.T) {
 		_, error := linkedList.Get(3)
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
@@ -106,7 +106,7 @@ func TestLinkedListRemove(t *testing.T) {
 	t.Run("Remove elements", func(t *testing.T) {
 		value, error := linkedList.Remove(2) // Remove element from the middle
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -117,7 +117,7 @@ func TestLinkedListRemove(t *testing.T) {
 
 		value, error = linkedList.Remove(0) // Remove the first element
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -128,7 +128,7 @@ func TestLinkedListRemove(t *testing.T) {
 
 		value, error = linkedList.Remove(1) // Remove the last element
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 4 {
 			t.Errorf("expected value 4, got %v", value)
@@ -139,7 +139,7 @@ func TestLinkedListRemove(t *testing.T) {
 
 		value, error = linkedList.Remove(0) // Remove the only remaining element
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -153,7 +153,7 @@ func TestLinkedListRemove(t *testing.T) {
 	t.Run("Remove out of bounds", func(t *testing.T) {
 		_, error := linkedList.Remove(0)
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
