@@ -35,7 +35,7 @@ func (queue *Queue) Enqueue(value interface{}) {
 func (queue *Queue) Dequeue() (interface{}, error) {
 	// Check if the queue is empty.
 	if queue.IsEmpty() {
-		return nil, errors.New("queue is empty") // Return an error if the queue is empty.
+		return nil, errors.New(QueueEmptyError) // Return an error if the queue is empty.
 	}
 	// Get the value of the front element.
 	value := queue.elements[0]
@@ -49,7 +49,7 @@ func (queue *Queue) Dequeue() (interface{}, error) {
 func (queue *Queue) Peek() (interface{}, error) {
 	// Check if the queue is empty.
 	if queue.IsEmpty() {
-		return nil, errors.New("queue is empty") // Return an error if the queue is empty.
+		return nil, errors.New(QueueEmptyError) // Return an error if the queue is empty.
 	}
 	// Return the value of the front element without removing it.
 	return queue.elements[0], nil

@@ -62,7 +62,7 @@ func TestQueueDequeue(t *testing.T) {
 		// Dequeue elements from the queue and check the values and size.
 		value, error := queue.Dequeue()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -73,7 +73,7 @@ func TestQueueDequeue(t *testing.T) {
 
 		value, error = queue.Dequeue()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -84,7 +84,7 @@ func TestQueueDequeue(t *testing.T) {
 
 		value, error = queue.Dequeue()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -98,7 +98,7 @@ func TestQueueDequeue(t *testing.T) {
 	t.Run("Dequeue from empty queue", func(t *testing.T) {
 		_, error := queue.Dequeue()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
@@ -114,7 +114,7 @@ func TestQueuePeek(t *testing.T) {
 		// Peek at the front element of the queue without removing it.
 		value, error := queue.Peek()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -131,7 +131,7 @@ func TestQueuePeek(t *testing.T) {
 		queue.Dequeue()
 		_, error := queue.Peek()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
