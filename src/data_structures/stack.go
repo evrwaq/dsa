@@ -35,7 +35,7 @@ func (stack *Stack) Push(value interface{}) {
 func (stack *Stack) Pop() (interface{}, error) {
 	// Check if the stack is empty.
 	if stack.IsEmpty() {
-		return nil, errors.New("stack is empty") // Return an error if the stack is empty.
+		return nil, errors.New(StackEmptyError) // Return an error if the stack is empty.
 	}
 	// Get the value of the top element.
 	value := stack.elements[len(stack.elements)-1]
@@ -49,7 +49,7 @@ func (stack *Stack) Pop() (interface{}, error) {
 func (stack *Stack) Peek() (interface{}, error) {
 	// Check if the stack is empty.
 	if stack.IsEmpty() {
-		return nil, errors.New("stack is empty") // Return an error if the stack is empty.
+		return nil, errors.New(StackEmptyError) // Return an error if the stack is empty.
 	}
 	// Return the value of the top element without removing it.
 	return stack.elements[len(stack.elements)-1], nil

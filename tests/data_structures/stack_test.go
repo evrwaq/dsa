@@ -62,7 +62,7 @@ func TestStackPop(t *testing.T) {
 		// Pop elements from the stack and check the values and size.
 		value, error := stack.Pop()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -73,7 +73,7 @@ func TestStackPop(t *testing.T) {
 
 		value, error = stack.Pop()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -84,7 +84,7 @@ func TestStackPop(t *testing.T) {
 
 		value, error = stack.Pop()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -98,7 +98,7 @@ func TestStackPop(t *testing.T) {
 	t.Run("Pop from empty stack", func(t *testing.T) {
 		_, error := stack.Pop()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
@@ -114,7 +114,7 @@ func TestStackPeek(t *testing.T) {
 		// Peek at the top element of the stack without removing it.
 		value, error := stack.Peek()
 		if error != nil {
-			t.Errorf("unexpected error: %v", error)
+			t.Errorf(data_structures.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -131,7 +131,7 @@ func TestStackPeek(t *testing.T) {
 		stack.Pop()
 		_, error := stack.Peek()
 		if error == nil {
-			t.Error("expected error, got nil")
+			t.Error(data_structures.ExpectedError)
 		}
 	})
 }
