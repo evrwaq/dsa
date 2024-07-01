@@ -1,7 +1,7 @@
-package data_structures_test
+package data_structures_linear_test
 
 import (
-	"dsa/src/data_structures"
+	data_structures "dsa/src/data_structures/linear"
 	"testing"
 )
 
