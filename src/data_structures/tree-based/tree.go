@@ -12,3 +12,7 @@ type Tree struct {
 func NewTree() *Tree {
 	return &Tree{}
 }
+
+func (tree *Tree) IsEmpty() bool {
+	return tree.Root == nil
+}
