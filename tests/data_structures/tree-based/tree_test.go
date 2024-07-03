@@ -14,3 +14,11 @@ func TestNewTree(t *testing.T) {
 		t.Error("expected root to be nil for a new tree")
 	}
 }
+
+func TestIsEmpty(t *testing.T) {
+	tree := data_structures.NewTree()
+
+	if !tree.IsEmpty() {
+		t.Error("expected tree to be empty")
+	}
+}
