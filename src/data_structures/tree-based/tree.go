@@ -32,3 +32,20 @@ func insert(node *TreeNode, value interface{}) *TreeNode {
 	}
 	return node
 }
+
+func (tree *Tree) Search(value interface{}) (bool, error) {
+	return search(tree.Root, value)
+}
+
+func search(node *TreeNode, value interface{}) (bool, error) {
+	if node == nil {
+		return false, nil
+	}
+	if value.(int) == node.Value.(int) {
+		return true, nil
+	} else if value.(int) < node.Value.(int) {
+		return search(node.Left, value)
+	} else {
+		return search(node.Right, value)
+	}
+}
