@@ -63,9 +63,13 @@ func remove(node *TreeNode, value interface{}) (*TreeNode, error) {
 		return nil, errors.New("value not found in the tree")
 	}
 	if value.(int) < node.Value.(int) {
-		node.Left, _ = remove(node.Left, value)
+		var err error
+		node.Left, err = remove(node.Left, value)
+		return node, err
 	} else if value.(int) > node.Value.(int) {
-		node.Right, _ = remove(node.Right, value)
+		var err error
+		node.Right, err = remove(node.Right, value)
+		return node, err
 	} else {
 		if node.Left == nil {
 			return node.Right, nil
@@ -74,9 +78,10 @@ func remove(node *TreeNode, value interface{}) (*TreeNode, error) {
 		}
 		minLargerNode := findMin(node.Right)
 		node.Value = minLargerNode.Value
-		node.Right, _ = remove(node.Right, minLargerNode.Value)
+		var err error
+		node.Right, err = remove(node.Right, minLargerNode.Value)
+		return node, err
 	}
-	return node, nil
 }
 
 func findMin(node *TreeNode) *TreeNode {
