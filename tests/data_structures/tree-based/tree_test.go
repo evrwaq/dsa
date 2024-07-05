@@ -77,3 +77,30 @@ func TestSearch(t *testing.T) {
 		t.Error("did not expect to find value 10 in the tree")
 	}
 }
+
+func TestRemove(t *testing.T) {
+	tree := data_structures.NewTree()
+
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(7)
+	tree.Insert(1)
+	tree.Insert(4)
+	tree.Insert(6)
+	tree.Insert(8)
+
+	err := tree.Remove(4)
+	if err != nil {
+		t.Errorf("unexpected error: %v", err)
+	}
+
+	found, _ := tree.Search(4)
+	if found {
+		t.Error("did not expect to find value 4 in the tree after removal")
+	}
+
+	err = tree.Remove(10)
+	if err == nil {
+		t.Error("expected error when trying to remove value not in the tree")
+	}
+}
