@@ -1,5 +1,7 @@
 package data_structures
 
+import "errors"
+
 type TreeNode struct {
 	Value       interface{}
 	Left, Right *TreeNode
@@ -48,4 +50,38 @@ func search(node *TreeNode, value interface{}) (bool, error) {
 	} else {
 		return search(node.Right, value)
 	}
+}
+
+func (tree *Tree) Remove(value interface{}) error {
+	var err error
+	tree.Root, err = remove(tree.Root, value)
+	return err
+}
+
+func remove(node *TreeNode, value interface{}) (*TreeNode, error) {
+	if node == nil {
+		return nil, errors.New("value not found in the tree")
+	}
+	if value.(int) < node.Value.(int) {
+		node.Left, _ = remove(node.Left, value)
+	} else if value.(int) > node.Value.(int) {
+		node.Right, _ = remove(node.Right, value)
+	} else {
+		if node.Left == nil {
+			return node.Right, nil
+		} else if node.Right == nil {
+			return node.Left, nil
+		}
+		minLargerNode := findMin(node.Right)
+		node.Value = minLargerNode.Value
+		node.Right, _ = remove(node.Right, minLargerNode.Value)
+	}
+	return node, nil
+}
+
+func findMin(node *TreeNode) *TreeNode {
+	for node.Left != nil {
+		node = node.Left
+	}
+	return node
 }
