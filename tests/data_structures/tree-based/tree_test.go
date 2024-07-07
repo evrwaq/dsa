@@ -89,27 +89,37 @@ func TestRemove(t *testing.T) {
 	tree.Insert(4)
 	tree.Insert(6)
 	tree.Insert(8)
+	tree.Insert(2)
 
-	err := tree.Remove(5)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+	error := tree.Remove(5)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
 	}
 	found, _ := tree.Search(5)
 	if found {
 		t.Error("did not expect to find value 5 in the tree after removal")
 	}
 
-	err = tree.Remove(3)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+	error = tree.Remove(3)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
 	}
 	found, _ = tree.Search(3)
 	if found {
 		t.Error("did not expect to find value 3 in the tree after removal")
 	}
 
-	err = tree.Remove(10)
-	if err == nil {
+	error = tree.Remove(2)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
+	}
+	found, _ = tree.Search(2)
+	if found {
+		t.Error("did not expect to find value 2 in the tree after removal")
+	}
+
+	error = tree.Remove(10)
+	if error == nil {
 		t.Error("expected error when trying to remove value not in the tree")
 	}
 }
