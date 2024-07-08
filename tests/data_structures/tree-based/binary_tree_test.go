@@ -14,3 +14,11 @@ func TestNewBinaryTree(t *testing.T) {
 		t.Error("expected root to be nil for a new tree")
 	}
 }
+
+func TestBinaryTreeIsEmpty(t *testing.T) {
+	tree := data_structures.NewBinaryTree()
+
+	if !tree.IsEmpty() {
+		t.Error("expected tree to be empty")
+	}
+}
