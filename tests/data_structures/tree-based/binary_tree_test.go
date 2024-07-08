@@ -93,36 +93,36 @@ func TestBinaryTreeRemove(t *testing.T) {
 	tree.Insert(9)
 	tree.Insert(0)
 
-	err := tree.Remove(5)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+	error := tree.Remove(5)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
 	}
 	found, _ := tree.Search(5)
 	if found {
 		t.Error("did not expect to find value 5 in the tree after removal")
 	}
 
-	err = tree.Remove(3)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+	error = tree.Remove(3)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
 	}
 	found, _ = tree.Search(3)
 	if found {
 		t.Error("did not expect to find value 3 in the tree after removal")
 	}
 
-	err = tree.Remove(1)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+	error = tree.Remove(1)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
 	}
 	found, _ = tree.Search(1)
 	if found {
 		t.Error("did not expect to find value 1 in the tree after removal")
 	}
 
-	err = tree.Remove(8)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+	error = tree.Remove(8)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
 	}
 	found, _ = tree.Search(8)
 	if found {
@@ -134,17 +134,17 @@ func TestBinaryTreeRemove(t *testing.T) {
 	tree.Insert(3)
 	tree.Insert(1)
 
-	err = tree.Remove(3)
-	if err != nil {
-		t.Errorf("unexpected error: %v", err)
+	error = tree.Remove(3)
+	if error != nil {
+		t.Errorf("unexpected error: %v", error)
 	}
 	found, _ = tree.Search(3)
 	if found {
 		t.Error("did not expect to find value 3 in the tree after removal")
 	}
 
-	err = tree.Remove(20)
-	if err == nil {
+	error = tree.Remove(20)
+	if error == nil {
 		t.Error("expected error when trying to remove value not in the tree")
 	}
 }
