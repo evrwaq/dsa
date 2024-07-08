@@ -50,3 +50,31 @@ func TestBinaryTreeInsert(t *testing.T) {
 		}
 	}
 }
+
+func TestBinaryTreeSearch(t *testing.T) {
+	tree := data_structures.NewBinaryTree()
+
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(7)
+
+	found, _ := tree.Search(5)
+	if !found {
+		t.Error("expected to find value 5 in the tree")
+	}
+
+	found, _ = tree.Search(3)
+	if !found {
+		t.Error("expected to find value 3 in the tree")
+	}
+
+	found, _ = tree.Search(7)
+	if !found {
+		t.Error("expected to find value 7 in the tree")
+	}
+
+	found, _ = tree.Search(10)
+	if found {
+		t.Error("did not expect to find value 10 in the tree")
+	}
+}
