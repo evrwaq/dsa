@@ -21,6 +21,12 @@ func TestBinaryTreeIsEmpty(t *testing.T) {
 	if !tree.IsEmpty() {
 		t.Error("expected tree to be empty")
 	}
+
+	tree.Insert(5)
+
+	if tree.IsEmpty() {
+		t.Error("expected tree to not be empty")
+	}
 }
 
 func TestBinaryTreeInsert(t *testing.T) {
