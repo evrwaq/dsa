@@ -53,9 +53,9 @@ func searchBinary(node *BinaryTreeNode, value interface{}) (bool, error) {
 }
 
 func (tree *BinaryTree) Remove(value interface{}) error {
-	var err error
-	tree.Root, err = removeBinary(tree.Root, value)
-	return err
+	var error error
+	tree.Root, error = removeBinary(tree.Root, value)
+	return error
 }
 
 func removeBinary(node *BinaryTreeNode, value interface{}) (*BinaryTreeNode, error) {
@@ -63,13 +63,13 @@ func removeBinary(node *BinaryTreeNode, value interface{}) (*BinaryTreeNode, err
 		return nil, errors.New("value not found in the tree")
 	}
 	if value.(int) < node.Value.(int) {
-		var err error
-		node.Left, err = removeBinary(node.Left, value)
-		return node, err
+		var error error
+		node.Left, error = removeBinary(node.Left, value)
+		return node, error
 	} else if value.(int) > node.Value.(int) {
-		var err error
-		node.Right, err = removeBinary(node.Right, value)
-		return node, err
+		var error error
+		node.Right, error = removeBinary(node.Right, value)
+		return node, error
 	} else {
 		if node.Left == nil {
 			return node.Right, nil
@@ -78,9 +78,9 @@ func removeBinary(node *BinaryTreeNode, value interface{}) (*BinaryTreeNode, err
 		}
 		minLargerNode := findMinBinary(node.Right)
 		node.Value = minLargerNode.Value
-		var err error
-		node.Right, err = removeBinary(node.Right, minLargerNode.Value)
-		return node, err
+		var error error
+		node.Right, error = removeBinary(node.Right, minLargerNode.Value)
+		return node, error
 	}
 }
 
