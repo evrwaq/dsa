@@ -32,3 +32,20 @@ func insertBinary(node *BinaryTreeNode, value interface{}) *BinaryTreeNode {
 	}
 	return node
 }
+
+func (tree *BinaryTree) Search(value interface{}) (bool, error) {
+	return searchBinary(tree.Root, value)
+}
+
+func searchBinary(node *BinaryTreeNode, value interface{}) (bool, error) {
+	if node == nil {
+		return false, nil
+	}
+	if value.(int) == node.Value.(int) {
+		return true, nil
+	} else if value.(int) < node.Value.(int) {
+		return searchBinary(node.Left, value)
+	} else {
+		return searchBinary(node.Right, value)
+	}
+}
