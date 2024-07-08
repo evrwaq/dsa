@@ -12,3 +12,7 @@ type BinaryTree struct {
 func NewBinaryTree() *BinaryTree {
 	return &BinaryTree{}
 }
+
+func (tree *BinaryTree) IsEmpty() bool {
+	return tree.Root == nil
+}
