@@ -126,6 +126,29 @@ A Deque (Double-ended Queue) is a linear data structure that allows insertion an
 **Implementation in Go:**
 The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/deque.go).
 
+### Tree
+
+The `Tree` data structure is a hierarchical structure consisting of nodes, where each node has a value and references to its left and right children.
+
+**Characteristics**:
+- Hierarchical structure.
+- Root node with zero or more child nodes.
+- Each child node can have its own children, forming a subtree.
+
+**Main Operations**:
+- `Insert`: Adds a new value to the tree.
+- `Search`: Checks if a value exists in the tree.
+- `Remove`: Removes a value from the tree.
+- `IsEmpty`: Checks if the tree is empty.
+
+**Complexity**:
+- Insert: O(log n) on average, O(n) in the worst case.
+- Search: O(log n) on average, O(n) in the worst case.
+- Remove: O(log n) on average, O(n) in the worst case.
+
+**Implementation in Go:**
+The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/tree-based/tree.go.go).
+
 ## Algorithms
 
 (Coming soon)
