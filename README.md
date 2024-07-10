@@ -27,7 +27,7 @@ An Array is a data structure that stores a collection of elements in contiguous 
   - Worst case: O(n) - linear time (shifting of elements).
 
 **Implementation in Go:**
-The implementation of the Array data structure in Go can be found in the [`array.go`](src/data_structures/array.go) file.
+The implementation of the Array data structure in Go can be found in the [`array.go`](src/data_structures/linear/array.go) file.
 
 ### Linked List (English)
 
@@ -50,7 +50,7 @@ A Linked List is a linear data structure where each element is a node that conta
   - Worst case: O(n) - linear time (removal from the end).
 
 **Implementation in Go:**
-The implementation of the Linked List data structure in Go can be found in the file [`linked_list.go`](src/data_structures/linked_list.go).
+The implementation of the Linked List data structure in Go can be found in the file [`linked_list.go`](src/data_structures/linear/linked_list.go).
 
 ### Stack
 
@@ -74,7 +74,7 @@ A Stack is a linear data structure that follows the Last In First Out (LIFO) pri
   - O(1) - constant time.
 
 **Implementation in Go:**
-The implementation of the Stack data structure in Go can be found in the file [`stack.go`](src/data_structures/stack.go).
+The implementation of the Stack data structure in Go can be found in the file [`stack.go`](src/data_structures/linear/stack.go).
 
 ### Queue
 
@@ -98,7 +98,7 @@ A Queue is a linear data structure that follows the First In First Out (FIFO) pr
   - O(1) - constant time.
 
 **Implementation in Go:**
-The implementation of the Queue data structure in Go can be found in the file [`queue.go`](src/data_structures/queue.go).
+The implementation of the Queue data structure in Go can be found in the file [`queue.go`](src/data_structures/linear/queue.go).
 
 ### Deque
 
@@ -124,7 +124,7 @@ A Deque (Double-ended Queue) is a linear data structure that allows insertion an
   - O(1) - constant time.
 
 **Implementation in Go:**
-The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/deque.go).
+The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/linear/deque.go).
 
 ### Tree
 
