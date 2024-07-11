@@ -147,7 +147,7 @@ The `Tree` data structure is a hierarchical structure consisting of nodes, where
 - Remove: O(log n) on average, O(n) in the worst case.
 
 **Implementation in Go:**
-The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/tree-based/tree.go.go).
+The implementation of the Deque data structure in Go can be found in the file [`tree.go`](src/data_structures/tree-based/tree.go).
 
 ## Algorithms
 
