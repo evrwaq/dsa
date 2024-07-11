@@ -1,21 +1,21 @@
-# Estruturas de Dados e Algoritmos (DSA)
+# Estruturas de Dados e Algoritmos (EDA)
 
 *[Read in English](README.md)*
 
 Este projeto tem como objetivo demonstrar as principais estruturas de dados e algoritmos, bem como documentar e explicar cada um deles.
 
-## Data Structures
+## Estruturas de Dados
 
-### Array
+### Array (Vetor)
 
-Um Array é uma estrutura de dados que armazena uma coleção de elementos em locais de memória contíguos. Cada elemento pode ser acessado diretamente pelo seu índice, o que torna a operação de acesso muito rápida. No entanto, a inserção e a remoção de elementos podem ser demoradas, pois podem exigir o deslocamento de outros elementos.
+Um Array (Vetor) é uma estrutura de dados que armazena uma coleção de elementos em locais de memória contíguos. Cada elemento pode ser acessado diretamente pelo seu índice, tornando as operações de acesso muito rápidas. No entanto, a inserção e remoção de elementos podem ser demoradas, pois podem exigir o deslocamento de outros elementos.
 
 **Características:**
 - **Indexação**: Acesso direto aos elementos via índice.
-- **Tamanho fixo**: O tamanho do array é definido na sua criação e não pode ser alterado.
-- **Tipo homogêneo**: Todos os elementos do array são do mesmo tipo.
+- **Tamanho fixo**: O tamanho do vetor é definido na criação e não pode ser alterado.
+- **Tipo homogêneo**: Todos os elementos do vetor são do mesmo tipo.
 
-**Operações principais e suas complexidades:**
+**Principais operações e suas complexidades:**
 - **Acesso**:
   - Melhor caso: O(1) - tempo constante.
   - Pior caso: O(1) - tempo constante.
@@ -27,18 +27,18 @@ Um Array é uma estrutura de dados que armazena uma coleção de elementos em lo
   - Pior caso: O(n) - tempo linear (deslocamento de elementos).
 
 **Implementação em Go:**
-A implementação da estrutura de dados Array em Go pode ser encontrada no arquivo [`array.go`](src/data_structures/array.go).
+A implementação da estrutura de dados Array em Go pode ser encontrada no arquivo [`array.go`](src/data_structures/linear/array.go).
 
-### Lista Ligada/Encadeada
+### Lista Ligada (Linked List)
 
-Uma Lista Ligada/Encadeada (Linked List) é uma estrutura de dados linear onde cada elemento é um nó que contém um valor e uma referência (ou ponteiro) para o próximo nó na sequência.
+Uma Lista Ligada é uma estrutura de dados linear onde cada elemento é um nó que contém um valor e uma referência (ou ponteiro) para o próximo nó na sequência.
 
 **Características:**
 - **Cadeia de Nós**: Cada nó aponta para o próximo nó.
-- **Tamanho Variável**: A lista pode crescer e diminuir dinamicamente.
+- **Tamanho Variável**: A lista pode crescer e encolher dinamicamente.
 - **Acesso Sequencial**: O acesso aos elementos é sequencial, começando pelo primeiro nó.
 
-**Operações principais e suas complexidades:**
+**Principais Operações e Suas Complexidades:**
 - **Acesso**:
   - Melhor caso: O(1) - tempo constante (primeiro elemento).
   - Pior caso: O(n) - tempo linear (último elemento).
@@ -50,82 +50,108 @@ Uma Lista Ligada/Encadeada (Linked List) é uma estrutura de dados linear onde c
   - Pior caso: O(n) - tempo linear (remoção do final).
 
 **Implementação em Go:**
-A implementação da estrutura de dados Linked List em Go pode ser encontrada no arquivo [`linked_list.go`](src/data_structures/linked_list.go).
+A implementação da estrutura de dados Lista Ligada em Go pode ser encontrada no arquivo [`linked_list.go`](src/data_structures/linear/linked_list.go).
 
-### Pilha
+### Pilha (Stack)
 
-Uma Pilha (Stack) é uma estrutura de dados linear que segue o princípio de Último a Entrar, Primeiro a Sair (LIFO). Elementos podem ser adicionados e removidos apenas do topo da pilha.
+Uma Pilha é uma estrutura de dados linear que segue o princípio de Último a Entrar, Primeiro a Sair (LIFO). Os elementos são adicionados e removidos da mesma extremidade, chamada de topo da pilha.
 
 **Características:**
 - **LIFO**: Ordenação de Último a Entrar, Primeiro a Sair.
-- **Tamanho Variável**: A pilha pode crescer e diminuir dinamicamente.
-- **Acesso ao Topo**: O acesso aos elementos é feito apenas no topo da pilha.
+- **Tamanho Variável**: A pilha pode crescer e encolher dinamicamente.
+- **Acesso ao Topo**: O acesso aos elementos é somente no topo da pilha.
 
-**Operações principais e suas complexidades:**
-- **Push**:
+**Principais Operações e Suas Complexidades:**
+- **Push** (adicionar um elemento ao topo):
   - O(1) - tempo constante.
-- **Pop**:
+- **Pop** (remover um elemento do topo):
   - O(1) - tempo constante.
-- **Peek**:
+- **Peek** (visualizar o elemento do topo sem removê-lo):
   - O(1) - tempo constante.
-- **Size**:
+- **Tamanho**:
   - O(1) - tempo constante.
-- **IsEmpty**:
+- **EstáVazia**:
   - O(1) - tempo constante.
 
 **Implementação em Go:**
-A implementação da estrutura de dados Pilha em Go pode ser encontrada no arquivo [`stack.go`](src/data_structures/stack.go).
+A implementação da estrutura de dados Pilha em Go pode ser encontrada no arquivo [`stack.go`](src/data_structures/linear/stack.go).
 
-### Fila
+### Fila (Queue)
 
-Uma Fila (Queue) é uma estrutura de dados linear que segue o princípio de Primeiro a Entrar, Primeiro a Sair (FIFO). Elementos podem ser adicionados no final e removidos do início da fila.
+Uma Fila é uma estrutura de dados linear que segue o princípio de Primeiro a Entrar, Primeiro a Sair (FIFO). Os elementos são adicionados na parte traseira (traseira) e removidos da frente.
 
 **Características:**
 - **FIFO**: Ordenação de Primeiro a Entrar, Primeiro a Sair.
-- **Tamanho Variável**: A fila pode crescer e diminuir dinamicamente.
-- **Acesso ao Início e ao Fim**: O acesso aos elementos é feito apenas no início e no fim da fila.
+- **Tamanho Variável**: A fila pode crescer e encolher dinamicamente.
+- **Acesso Frontal e Traseiro**: Os elementos são adicionados na parte traseira e removidos da parte frontal.
 
-**Operações principais e suas complexidades:**
-- **Enqueue**:
+**Principais Operações e Suas Complexidades:**
+- **Enqueue** (adicionar um elemento à parte traseira):
   - O(1) - tempo constante.
-- **Dequeue**:
+- **Dequeue** (remover um elemento da parte frontal):
   - O(1) - tempo constante.
-- **Peek**:
+- **Peek** (visualizar o elemento da frente sem removê-lo):
   - O(1) - tempo constante.
-- **Size**:
+- **Tamanho**:
   - O(1) - tempo constante.
-- **IsEmpty**:
+- **EstáVazia**:
   - O(1) - tempo constante.
 
 **Implementação em Go:**
-A implementação da estrutura de dados Fila em Go pode ser encontrada no arquivo [`queue.go`](src/data_structures/queue.go).
+A implementação da estrutura de dados Fila em Go pode ser encontrada no arquivo [`queue.go`](src/data_structures/linear/queue.go).
 
-### Deque
+### Deque (Double-ended Queue)
 
-Um Deque (Double-ended Queue) é uma estrutura de dados linear que permite a inserção e remoção de elementos de ambas as extremidades, frente e trás.
+Um Deque (Fila de Dupla Extremidade) é uma estrutura de dados linear que permite a inserção e remoção de elementos de ambas as extremidades, frente e traseira.
 
 **Características:**
-- **Double-ended**: Elementos podem ser adicionados ou removidos de ambas as extremidades.
-- **Tamanho Variável**: O deque pode crescer e diminuir dinamicamente.
-- **Acesso à Frente e Trás**: O acesso aos elementos é feito tanto na frente quanto na parte traseira do deque.
+- **Dupla Extremidade**: Os elementos podem ser adicionados ou removidos de ambas as extremidades.
+- **Tamanho Variável**: O deque pode crescer e encolher dinamicamente.
+- **Acesso Frontal e Traseiro**: Acesso aos elementos é na frente e na traseira do deque.
 
-**Operações principais e suas complexidades:**
-- **AddFront**:
+**Principais Operações e Suas Complexidades:**
+- **AdicionarFrente**:
   - O(n) - tempo linear.
-- **AddBack**:
+- **AdicionarTraseira**:
   - O(1) - tempo constante.
-- **RemoveFront**:
+- **RemoverFrente**:
   - O(1) - tempo constante.
-- **RemoveBack**:
+- **RemoverTraseira**:
   - O(1) - tempo constante.
-- **Size**:
+- **Tamanho**:
   - O(1) - tempo constante.
-- **IsEmpty**:
+- **EstáVazio**:
   - O(1) - tempo constante.
 
 **Implementação em Go:**
-A implementação da estrutura de dados Deque em Go pode ser encontrada no arquivo [`deque.go`](src/data_structures/deque.go).
+A implementação da estrutura de dados Deque em Go pode ser encontrada no arquivo [`deque.go`](src/data_structures/linear/deque.go).
 
-## Algorithms
+### Árvore (Tree)
+
+Uma Árvore é uma estrutura de dados hierárquica composta por nós, onde cada nó possui um valor e referências para seus filhos esquerdo e direito.
+
+**Características:**
+- **Estrutura Hierárquica**: Composta por nós com relacionamentos pai-filho.
+- **Nó Raiz**: O nó superior com zero ou mais nós filhos.
+- **Subárvores**: Cada nó filho pode ter seus próprios filhos, formando subárvores.
+- **Árvores Binárias**: Árvores onde cada nó tem no máximo dois filhos (esquerdo e direito).
+
+**Principais operações e suas complexidades:**
+- **Inserir**:
+  - Caso médio: O(log n) - tempo logarítmico.
+  - Pior caso: O(n) - tempo linear (árvore desbalanceada).
+- **Buscar**:
+  - Caso médio: O(log n) - tempo logarítmico.
+  - Pior caso: O(n) - tempo linear (árvore desbalanceada).
+- **Remover**:
+  - Caso médio: O(log n) - tempo logarítmico.
+  - Pior caso: O(n) - tempo linear (árvore desbalanceada).
+- **EstáVazia**:
+  - O(1) - tempo constante.
+
+**Implementação em Go:**
+A implementação da estrutura de dados Árvore em Go pode ser encontrada no arquivo [`tree.go`](src/data_structures/tree-based/tree.go).
+
+## Algoritmos
 
 (Em breve)
