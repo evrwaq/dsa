@@ -6,6 +6,9 @@ This project aims to demonstrate the main data structures and algorithms, as wel
 
 ## Data Structures
 
+<details>
+  <summary>Linear Data Structures</summary>
+
 ### Array
 
 An Array is a data structure that stores a collection of elements in contiguous memory locations. Each element can be directly accessed by its index, making access operations very fast. However, insertion and removal of elements can be time-consuming as they may require shifting other elements.
@@ -126,6 +129,11 @@ A Deque (Double-ended Queue) is a linear data structure that allows insertion an
 **Implementation in Go:**
 The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/linear/deque.go).
 
+</details>
+
+<details>
+  <summary>Tree-based Data Structures</summary>
+
 ### Tree
 
 A Tree is a hierarchical data structure consisting of nodes, where each node has a value and references to its left and right children.
@@ -151,6 +159,8 @@ A Tree is a hierarchical data structure consisting of nodes, where each node has
 
 **Implementation in Go:**
 The implementation of the Tree data structure in Go can be found in the file [`tree.go`](src/data_structures/tree-based/tree.go).
+
+</details>
 
 ## Algorithms
 
