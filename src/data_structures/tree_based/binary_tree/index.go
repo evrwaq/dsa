@@ -1,6 +1,9 @@
 package data_structures
 
-import "errors"
+import (
+	ds_errors "dsa/src/data_structures/errors"
+	"errors"
+)
 
 type BinaryTreeNode struct {
 	Value       interface{}
@@ -53,23 +56,23 @@ func searchBinary(node *BinaryTreeNode, value interface{}) (bool, error) {
 }
 
 func (tree *BinaryTree) Remove(value interface{}) error {
-	var error error
-	tree.Root, error = removeBinary(tree.Root, value)
-	return error
+	var err error
+	tree.Root, err = removeBinary(tree.Root, value)
+	return err
 }
 
 func removeBinary(node *BinaryTreeNode, value interface{}) (*BinaryTreeNode, error) {
 	if node == nil {
-		return nil, errors.New("value not found in the tree")
+		return nil, errors.New(ds_errors.ValueNotFoundError)
 	}
 	if value.(int) < node.Value.(int) {
-		var error error
-		node.Left, error = removeBinary(node.Left, value)
-		return node, error
+		var err error
+		node.Left, err = removeBinary(node.Left, value)
+		return node, err
 	} else if value.(int) > node.Value.(int) {
-		var error error
-		node.Right, error = removeBinary(node.Right, value)
-		return node, error
+		var err error
+		node.Right, err = removeBinary(node.Right, value)
+		return node, err
 	} else {
 		if node.Left == nil {
 			return node.Right, nil
@@ -78,9 +81,9 @@ func removeBinary(node *BinaryTreeNode, value interface{}) (*BinaryTreeNode, err
 		}
 		minLargerNode := findMinBinary(node.Right)
 		node.Value = minLargerNode.Value
-		var error error
-		node.Right, error = removeBinary(node.Right, minLargerNode.Value)
-		return node, error
+		var err error
+		node.Right, err = removeBinary(node.Right, minLargerNode.Value)
+		return node, err
 	}
 }
 

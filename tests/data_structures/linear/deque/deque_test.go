@@ -1,13 +1,14 @@
 package data_structures_linear_test
 
 import (
-	data_structures "dsa/src/data_structures/linear"
+	ds_errors "dsa/src/data_structures/errors"
+	ds "dsa/src/data_structures/linear/deque"
 	"testing"
 )
 
 // TestNewDeque tests the creation of a new deque and its initial size and empty state.
 func TestNewDeque(t *testing.T) {
-	deque := data_structures.NewDeque() // Create a new empty deque.
+	deque := ds.NewDeque() // Create a new empty deque.
 
 	// Test the initial size of the deque.
 	t.Run("Initial Size", func(t *testing.T) {
@@ -26,7 +27,7 @@ func TestNewDeque(t *testing.T) {
 
 // TestDequeAddFront tests the AddFront method of the deque.
 func TestDequeAddFront(t *testing.T) {
-	deque := data_structures.NewDeque() // Create a new empty deque.
+	deque := ds.NewDeque() // Create a new empty deque.
 
 	t.Run("AddFront elements", func(t *testing.T) {
 		// Add elements to the front of the deque.
@@ -53,7 +54,7 @@ func TestDequeAddFront(t *testing.T) {
 
 // TestDequeAddBack tests the AddBack method of the deque.
 func TestDequeAddBack(t *testing.T) {
-	deque := data_structures.NewDeque() // Create a new empty deque.
+	deque := ds.NewDeque() // Create a new empty deque.
 
 	t.Run("AddBack elements", func(t *testing.T) {
 		// Add elements to the back of the deque.
@@ -80,7 +81,7 @@ func TestDequeAddBack(t *testing.T) {
 
 // TestDequeRemoveFront tests the RemoveFront method of the deque.
 func TestDequeRemoveFront(t *testing.T) {
-	deque := data_structures.NewDeque() // Create a new empty deque.
+	deque := ds.NewDeque() // Create a new empty deque.
 	deque.AddBack(1)
 	deque.AddBack(2)
 	deque.AddBack(3)
@@ -89,7 +90,7 @@ func TestDequeRemoveFront(t *testing.T) {
 		// Remove elements from the front of the deque and check the values and size.
 		value, error := deque.RemoveFront()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -100,7 +101,7 @@ func TestDequeRemoveFront(t *testing.T) {
 
 		value, error = deque.RemoveFront()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -111,7 +112,7 @@ func TestDequeRemoveFront(t *testing.T) {
 
 		value, error = deque.RemoveFront()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -125,14 +126,14 @@ func TestDequeRemoveFront(t *testing.T) {
 	t.Run("RemoveFront from empty deque", func(t *testing.T) {
 		_, error := deque.RemoveFront()
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }
 
 // TestDequeRemoveBack tests the RemoveBack method of the deque.
 func TestDequeRemoveBack(t *testing.T) {
-	deque := data_structures.NewDeque() // Create a new empty deque.
+	deque := ds.NewDeque() // Create a new empty deque.
 	deque.AddBack(1)
 	deque.AddBack(2)
 	deque.AddBack(3)
@@ -141,7 +142,7 @@ func TestDequeRemoveBack(t *testing.T) {
 		// Remove elements from the back of the deque and check the values and size.
 		value, error := deque.RemoveBack()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -152,7 +153,7 @@ func TestDequeRemoveBack(t *testing.T) {
 
 		value, error = deque.RemoveBack()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -163,7 +164,7 @@ func TestDequeRemoveBack(t *testing.T) {
 
 		value, error = deque.RemoveBack()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -177,14 +178,14 @@ func TestDequeRemoveBack(t *testing.T) {
 	t.Run("RemoveBack from empty deque", func(t *testing.T) {
 		_, error := deque.RemoveBack()
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }
 
 // TestDequePeekFront tests the PeekFront method of the deque.
 func TestDequePeekFront(t *testing.T) {
-	deque := data_structures.NewDeque() // Create a new empty deque.
+	deque := ds.NewDeque() // Create a new empty deque.
 	deque.AddBack(1)
 	deque.AddBack(2)
 	deque.AddBack(3)
@@ -193,7 +194,7 @@ func TestDequePeekFront(t *testing.T) {
 		// Peek at the front element of the deque without removing it.
 		value, error := deque.PeekFront()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -210,14 +211,14 @@ func TestDequePeekFront(t *testing.T) {
 		deque.RemoveFront()
 		_, error := deque.PeekFront()
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }
 
 // TestDequePeekBack tests the PeekBack method of the deque.
 func TestDequePeekBack(t *testing.T) {
-	deque := data_structures.NewDeque() // Create a new empty deque.
+	deque := ds.NewDeque() // Create a new empty deque.
 	deque.AddBack(1)
 	deque.AddBack(2)
 	deque.AddBack(3)
@@ -226,7 +227,7 @@ func TestDequePeekBack(t *testing.T) {
 		// Peek at the back element of the deque without removing it.
 		value, error := deque.PeekBack()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -243,7 +244,7 @@ func TestDequePeekBack(t *testing.T) {
 		deque.RemoveBack()
 		_, error := deque.PeekBack()
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }

@@ -1,12 +1,12 @@
 package data_structures_test
 
 import (
-	data_structures "dsa/src/data_structures/tree-based"
+	ds "dsa/src/data_structures/tree_based/binary_tree"
 	"testing"
 )
 
-func TestNewTree(t *testing.T) {
-	tree := data_structures.NewTree()
+func TestNewBinaryTree(t *testing.T) {
+	tree := ds.NewBinaryTree()
 
 	if tree == nil {
 		t.Error("expected tree to be non-nil")
@@ -15,8 +15,8 @@ func TestNewTree(t *testing.T) {
 	}
 }
 
-func TestIsEmpty(t *testing.T) {
-	tree := data_structures.NewTree()
+func TestBinaryTreeIsEmpty(t *testing.T) {
+	tree := ds.NewBinaryTree()
 
 	if !tree.IsEmpty() {
 		t.Error("expected tree to be empty")
@@ -29,8 +29,8 @@ func TestIsEmpty(t *testing.T) {
 	}
 }
 
-func TestInsert(t *testing.T) {
-	tree := data_structures.NewTree()
+func TestBinaryTreeInsert(t *testing.T) {
+	tree := ds.NewBinaryTree()
 
 	tree.Insert(5)
 	tree.Insert(3)
@@ -51,8 +51,8 @@ func TestInsert(t *testing.T) {
 	}
 }
 
-func TestSearch(t *testing.T) {
-	tree := data_structures.NewTree()
+func TestBinaryTreeSearch(t *testing.T) {
+	tree := ds.NewBinaryTree()
 
 	tree.Insert(5)
 	tree.Insert(3)
@@ -79,8 +79,8 @@ func TestSearch(t *testing.T) {
 	}
 }
 
-func TestRemove(t *testing.T) {
-	tree := data_structures.NewTree()
+func TestBinaryTreeRemove(t *testing.T) {
+	tree := ds.NewBinaryTree()
 
 	tree.Insert(5)
 	tree.Insert(3)
@@ -129,7 +129,7 @@ func TestRemove(t *testing.T) {
 		t.Error("did not expect to find value 8 in the tree after removal")
 	}
 
-	tree = data_structures.NewTree()
+	tree = ds.NewBinaryTree()
 	tree.Insert(5)
 	tree.Insert(3)
 	tree.Insert(1)

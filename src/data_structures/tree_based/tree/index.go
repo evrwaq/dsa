@@ -1,6 +1,9 @@
 package data_structures
 
-import "errors"
+import (
+	ds_errors "dsa/src/data_structures/errors"
+	"errors"
+)
 
 type TreeNode struct {
 	Value       interface{}
@@ -53,23 +56,23 @@ func search(node *TreeNode, value interface{}) (bool, error) {
 }
 
 func (tree *Tree) Remove(value interface{}) error {
-	var error error
-	tree.Root, error = remove(tree.Root, value)
-	return error
+	var err error
+	tree.Root, err = remove(tree.Root, value)
+	return err
 }
 
 func remove(node *TreeNode, value interface{}) (*TreeNode, error) {
 	if node == nil {
-		return nil, errors.New("value not found in the tree")
+		return nil, errors.New(ds_errors.ValueNotFoundError)
 	}
 	if value.(int) < node.Value.(int) {
-		var error error
-		node.Left, error = remove(node.Left, value)
-		return node, error
+		var err error
+		node.Left, err = remove(node.Left, value)
+		return node, err
 	} else if value.(int) > node.Value.(int) {
-		var error error
-		node.Right, error = remove(node.Right, value)
-		return node, error
+		var err error
+		node.Right, err = remove(node.Right, value)
+		return node, err
 	} else {
 		if node.Left == nil {
 			return node.Right, nil
@@ -78,9 +81,9 @@ func remove(node *TreeNode, value interface{}) (*TreeNode, error) {
 		}
 		minLargerNode := findMin(node.Right)
 		node.Value = minLargerNode.Value
-		var error error
-		node.Right, error = remove(node.Right, minLargerNode.Value)
-		return node, error
+		var err error
+		node.Right, err = remove(node.Right, minLargerNode.Value)
+		return node, err
 	}
 }
 

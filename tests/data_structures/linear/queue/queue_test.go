@@ -1,13 +1,14 @@
 package data_structures_linear_test
 
 import (
-	data_structures "dsa/src/data_structures/linear"
+	ds_errors "dsa/src/data_structures/errors"
+	ds "dsa/src/data_structures/linear/queue"
 	"testing"
 )
 
 // TestNewQueue tests the creation of a new queue and its initial size and empty state.
 func TestNewQueue(t *testing.T) {
-	queue := data_structures.NewQueue() // Create a new empty queue.
+	queue := ds.NewQueue() // Create a new empty queue.
 
 	// Test the initial size of the queue.
 	t.Run("Initial Size", func(t *testing.T) {
@@ -26,7 +27,7 @@ func TestNewQueue(t *testing.T) {
 
 // TestQueueEnqueue tests the Enqueue method of the queue.
 func TestQueueEnqueue(t *testing.T) {
-	queue := data_structures.NewQueue() // Create a new empty queue.
+	queue := ds.NewQueue() // Create a new empty queue.
 
 	t.Run("Enqueue elements", func(t *testing.T) {
 		// Enqueue elements onto the queue.
@@ -53,7 +54,7 @@ func TestQueueEnqueue(t *testing.T) {
 
 // TestQueueDequeue tests the Dequeue method of the queue.
 func TestQueueDequeue(t *testing.T) {
-	queue := data_structures.NewQueue() // Create a new empty queue.
+	queue := ds.NewQueue() // Create a new empty queue.
 	queue.Enqueue(1)
 	queue.Enqueue(2)
 	queue.Enqueue(3)
@@ -62,7 +63,7 @@ func TestQueueDequeue(t *testing.T) {
 		// Dequeue elements from the queue and check the values and size.
 		value, error := queue.Dequeue()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -73,7 +74,7 @@ func TestQueueDequeue(t *testing.T) {
 
 		value, error = queue.Dequeue()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -84,7 +85,7 @@ func TestQueueDequeue(t *testing.T) {
 
 		value, error = queue.Dequeue()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -98,14 +99,14 @@ func TestQueueDequeue(t *testing.T) {
 	t.Run("Dequeue from empty queue", func(t *testing.T) {
 		_, error := queue.Dequeue()
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }
 
 // TestQueuePeek tests the Peek method of the queue.
 func TestQueuePeek(t *testing.T) {
-	queue := data_structures.NewQueue() // Create a new empty queue.
+	queue := ds.NewQueue() // Create a new empty queue.
 	queue.Enqueue(1)
 	queue.Enqueue(2)
 	queue.Enqueue(3)
@@ -114,7 +115,7 @@ func TestQueuePeek(t *testing.T) {
 		// Peek at the front element of the queue without removing it.
 		value, error := queue.Peek()
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -131,7 +132,7 @@ func TestQueuePeek(t *testing.T) {
 		queue.Dequeue()
 		_, error := queue.Peek()
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }

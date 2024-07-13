@@ -1,13 +1,14 @@
 package data_structures_linear_test
 
 import (
-	data_structures "dsa/src/data_structures/linear"
+	ds_errors "dsa/src/data_structures/errors"
+	ds "dsa/src/data_structures/linear/linked_list"
 	"testing"
 )
 
 // TestNewLinkedList tests the creation of a new linked list and its initial size and empty state.
 func TestNewLinkedList(t *testing.T) {
-	linkedList := data_structures.NewLinkedList() // Create a new empty linked list.
+	linkedList := ds.NewLinkedList() // Create a new empty linked list.
 
 	// Test the initial size of the linked list.
 	t.Run("Initial Size", func(t *testing.T) {
@@ -26,7 +27,7 @@ func TestNewLinkedList(t *testing.T) {
 
 // TestLinkedListAdd tests the Add method of the linked list.
 func TestLinkedListAdd(t *testing.T) {
-	linkedList := data_structures.NewLinkedList() // Create a new empty linked list.
+	linkedList := ds.NewLinkedList() // Create a new empty linked list.
 
 	t.Run("Add elements", func(t *testing.T) {
 		// Add elements to the linked list.
@@ -53,7 +54,7 @@ func TestLinkedListAdd(t *testing.T) {
 
 // TestLinkedListGet tests the Get method of the linked list.
 func TestLinkedListGet(t *testing.T) {
-	linkedList := data_structures.NewLinkedList() // Create a new empty linked list.
+	linkedList := ds.NewLinkedList() // Create a new empty linked list.
 	linkedList.Add(1)
 	linkedList.Add(2)
 	linkedList.Add(3)
@@ -62,7 +63,7 @@ func TestLinkedListGet(t *testing.T) {
 	t.Run("Get elements", func(t *testing.T) {
 		value, error := linkedList.Get(0)
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -70,7 +71,7 @@ func TestLinkedListGet(t *testing.T) {
 
 		value, error = linkedList.Get(1)
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -78,7 +79,7 @@ func TestLinkedListGet(t *testing.T) {
 
 		value, error = linkedList.Get(2)
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -89,14 +90,14 @@ func TestLinkedListGet(t *testing.T) {
 	t.Run("Get out of bounds", func(t *testing.T) {
 		_, error := linkedList.Get(3)
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }
 
 // TestLinkedListRemove tests the Remove method of the linked list.
 func TestLinkedListRemove(t *testing.T) {
-	linkedList := data_structures.NewLinkedList() // Create a new empty linked list.
+	linkedList := ds.NewLinkedList() // Create a new empty linked list.
 	linkedList.Add(1)
 	linkedList.Add(2)
 	linkedList.Add(3)
@@ -106,7 +107,7 @@ func TestLinkedListRemove(t *testing.T) {
 	t.Run("Remove elements", func(t *testing.T) {
 		value, error := linkedList.Remove(2) // Remove element from the middle
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 3 {
 			t.Errorf("expected value 3, got %v", value)
@@ -117,7 +118,7 @@ func TestLinkedListRemove(t *testing.T) {
 
 		value, error = linkedList.Remove(0) // Remove the first element
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 1 {
 			t.Errorf("expected value 1, got %v", value)
@@ -128,7 +129,7 @@ func TestLinkedListRemove(t *testing.T) {
 
 		value, error = linkedList.Remove(1) // Remove the last element
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 4 {
 			t.Errorf("expected value 4, got %v", value)
@@ -139,7 +140,7 @@ func TestLinkedListRemove(t *testing.T) {
 
 		value, error = linkedList.Remove(0) // Remove the only remaining element
 		if error != nil {
-			t.Errorf(data_structures.UnexpectedError, error)
+			t.Errorf(ds_errors.UnexpectedError, error)
 		}
 		if value != 2 {
 			t.Errorf("expected value 2, got %v", value)
@@ -153,7 +154,7 @@ func TestLinkedListRemove(t *testing.T) {
 	t.Run("Remove out of bounds", func(t *testing.T) {
 		_, error := linkedList.Remove(0)
 		if error == nil {
-			t.Error(data_structures.ExpectedError)
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }

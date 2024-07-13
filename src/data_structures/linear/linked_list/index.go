@@ -1,6 +1,9 @@
 package data_structures
 
-import "errors"
+import (
+	ds_errors "dsa/src/data_structures/errors"
+	"errors"
+)
 
 // Node represents a node in the linked list.
 type Node struct {
@@ -51,7 +54,7 @@ func (linkedList *LinkedList) Add(value interface{}) {
 func (linkedList *LinkedList) Get(index int) (interface{}, error) {
 	// Check if the index is within the valid range.
 	if index < 0 || index >= linkedList.size {
-		return nil, errors.New(IndexOutOfBoundsError) // Return an error if the index is invalid.
+		return nil, errors.New(ds_errors.IndexOutOfBoundsError) // Return an error if the index is invalid.
 	}
 	current := linkedList.head
 	for i := 0; i < index; i++ {
@@ -65,7 +68,7 @@ func (linkedList *LinkedList) Get(index int) (interface{}, error) {
 func (linkedList *LinkedList) Remove(index int) (interface{}, error) {
 	// Check if the index is within the valid range.
 	if index < 0 || index >= linkedList.size {
-		return nil, errors.New(IndexOutOfBoundsError) // Return an error if the index is invalid.
+		return nil, errors.New(ds_errors.IndexOutOfBoundsError) // Return an error if the index is invalid.
 	}
 	var removedValue interface{}
 	if index == 0 {
