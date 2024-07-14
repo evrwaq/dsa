@@ -1,6 +1,7 @@
 package bst_test
 
 import (
+	ds_errors "dsa/src/data_structures/errors"
 	ds "dsa/src/data_structures/tree_based/binary_search_tree"
 	"testing"
 )
@@ -73,6 +74,40 @@ func TestBinaryTreeSearch(t *testing.T) {
 		found, err := tree.Search(10)
 		if err != nil || found {
 			t.Errorf("expected not to find value 10")
+		}
+	})
+}
+
+func TestBinaryTreeRemove(t *testing.T) {
+	tree := ds.NewBinaryTree()
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(7)
+	tree.Insert(1)
+	tree.Insert(4)
+
+	t.Run("Remove elements", func(t *testing.T) {
+		err := tree.Remove(3)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		found, err := tree.Search(3)
+		if err != nil || found {
+			t.Errorf("expected not to find value 3")
+		}
+
+		err = tree.Remove(5)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		found, err = tree.Search(5)
+		if err != nil || found {
+			t.Errorf("expected not to find value 5")
+		}
+
+		err = tree.Remove(10)
+		if err == nil {
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }
