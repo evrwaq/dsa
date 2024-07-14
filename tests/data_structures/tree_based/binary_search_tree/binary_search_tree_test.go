@@ -47,3 +47,25 @@ func TestBinaryTreeInsert(t *testing.T) {
 		}
 	})
 }
+
+func TestBinaryTreeSearch(t *testing.T) {
+	tree := ds.NewBinaryTree()
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(7)
+
+	t.Run("Search existing elements", func(t *testing.T) {
+		found, err := tree.Search(5)
+		if err != nil || !found {
+			t.Errorf("expected to find value 5")
+		}
+		found, err = tree.Search(3)
+		if err != nil || !found {
+			t.Errorf("expected to find value 3")
+		}
+		found, err = tree.Search(7)
+		if err != nil || !found {
+			t.Errorf("expected to find value 7")
+		}
+	})
+}
