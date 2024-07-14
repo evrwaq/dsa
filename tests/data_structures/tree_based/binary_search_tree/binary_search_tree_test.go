@@ -56,23 +56,23 @@ func TestBinaryTreeSearch(t *testing.T) {
 	tree.Insert(7)
 
 	t.Run("Search existing elements", func(t *testing.T) {
-		found, err := tree.Search(5)
-		if err != nil || !found {
+		found, error := tree.Search(5)
+		if error != nil || !found {
 			t.Errorf("expected to find value 5")
 		}
-		found, err = tree.Search(3)
-		if err != nil || !found {
+		found, error = tree.Search(3)
+		if error != nil || !found {
 			t.Errorf("expected to find value 3")
 		}
-		found, err = tree.Search(7)
-		if err != nil || !found {
+		found, error = tree.Search(7)
+		if error != nil || !found {
 			t.Errorf("expected to find value 7")
 		}
 	})
 
 	t.Run("Search non-existing elements", func(t *testing.T) {
-		found, err := tree.Search(10)
-		if err != nil || found {
+		found, error := tree.Search(10)
+		if error != nil || found {
 			t.Errorf("expected not to find value 10")
 		}
 	})
@@ -87,26 +87,26 @@ func TestBinaryTreeRemove(t *testing.T) {
 	tree.Insert(4)
 
 	t.Run("Remove elements", func(t *testing.T) {
-		err := tree.Remove(3)
-		if err != nil {
-			t.Errorf("unexpected error: %v", err)
+		error := tree.Remove(3)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
 		}
-		found, err := tree.Search(3)
-		if err != nil || found {
+		found, error := tree.Search(3)
+		if error != nil || found {
 			t.Errorf("expected not to find value 3")
 		}
 
-		err = tree.Remove(5)
-		if err != nil {
-			t.Errorf("unexpected error: %v", err)
+		error = tree.Remove(5)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
 		}
-		found, err = tree.Search(5)
-		if err != nil || found {
+		found, error = tree.Search(5)
+		if error != nil || found {
 			t.Errorf("expected not to find value 5")
 		}
 
-		err = tree.Remove(10)
-		if err == nil {
+		error = tree.Remove(10)
+		if error == nil {
 			t.Error(ds_errors.ExpectedError)
 		}
 	})
