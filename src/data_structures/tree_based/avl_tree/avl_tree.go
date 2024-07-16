@@ -1,5 +1,10 @@
 package data_structures
 
+import (
+	ds_errors "dsa/src/data_structures/errors"
+	"errors"
+)
+
 type TreeNode struct {
 	Value  int
 	Left   *TreeNode
@@ -50,6 +55,52 @@ func search(node *TreeNode, value int) (bool, error) {
 	} else {
 		return search(node.Right, value)
 	}
+}
+
+func (tree *AVLTree) Remove(value int) error {
+	var err error
+	tree.Root, err = remove(tree.Root, value)
+	return err
+}
+
+func remove(node *TreeNode, value int) (*TreeNode, error) {
+	if node == nil {
+		return nil, errors.New(ds_errors.ValueNotFoundError)
+	}
+	if value < node.Value {
+		var err error
+		node.Left, err = remove(node.Left, value)
+		if err != nil {
+			return nil, err
+		}
+	} else if value > node.Value {
+		var err error
+		node.Right, err = remove(node.Right, value)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		if node.Left == nil {
+			return node.Right, nil
+		} else if node.Right == nil {
+			return node.Left, nil
+		}
+		minLargerNode := findMin(node.Right)
+		node.Value = minLargerNode.Value
+		var err error
+		node.Right, err = remove(node.Right, minLargerNode.Value)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return balance(node), nil
+}
+
+func findMin(node *TreeNode) *TreeNode {
+	for node.Left != nil {
+		node = node.Left
+	}
+	return node
 }
 
 func balance(node *TreeNode) *TreeNode {
