@@ -47,3 +47,25 @@ func TestAVLTreeInsert(t *testing.T) {
 		}
 	})
 }
+
+func TestAVLTreeSearch(t *testing.T) {
+	tree := ds.NewAVLTree()
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(7)
+
+	t.Run("Search existing elements", func(t *testing.T) {
+		found, error := tree.Search(5)
+		if error != nil || !found {
+			t.Errorf("expected to find value 5")
+		}
+		found, error = tree.Search(3)
+		if error != nil || !found {
+			t.Errorf("expected to find value 3")
+		}
+		found, error = tree.Search(7)
+		if error != nil || !found {
+			t.Errorf("expected to find value 7")
+		}
+	})
+}
