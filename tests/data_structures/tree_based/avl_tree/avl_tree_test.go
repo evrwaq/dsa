@@ -68,4 +68,11 @@ func TestAVLTreeSearch(t *testing.T) {
 			t.Errorf("expected to find value 7")
 		}
 	})
+
+	t.Run("Search non-existing elements", func(t *testing.T) {
+		found, error := tree.Search(10)
+		if error != nil || found {
+			t.Errorf("expected not to find value 10")
+		}
+	})
 }
