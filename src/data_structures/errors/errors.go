@@ -8,4 +8,5 @@ const (
 	UnexpectedError       = "unexpected error: %v"
 	ExpectedError         = "expected error, got nil"
 	ValueNotFoundError    = "value not found in the tree"
+	ValueExistsError      = "value already exists in the AVL tree"
 )

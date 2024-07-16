@@ -5,6 +5,7 @@ import (
 	"errors"
 )
 
+// TreeNode represents a node in the AVL tree
 type TreeNode struct {
 	Value  int
 	Left   *TreeNode
@@ -12,114 +13,190 @@ type TreeNode struct {
 	Height int
 }
 
+// AVLTree represents the AVL tree
 type AVLTree struct {
 	Root *TreeNode
 }
 
+// NewAVLTree creates a new AVL tree
 func NewAVLTree() *AVLTree {
 	return &AVLTree{}
 }
 
-func (tree *AVLTree) IsEmpty() bool {
-	return tree.Root == nil
+// Insert inserts a value into the AVL tree
+func (t *AVLTree) Insert(value int) error {
+	var err error
+	t.Root, err = insert(t.Root, value)
+	return err
 }
 
-func (tree *AVLTree) Insert(value int) {
-	tree.Root = insert(tree.Root, value)
-}
-
-func insert(node *TreeNode, value int) *TreeNode {
+// insert is a recursive helper function to insert a value in the subtree rooted with node
+func insert(node *TreeNode, value int) (*TreeNode, error) {
 	if node == nil {
-		return &TreeNode{Value: value, Height: 1}
+		return &TreeNode{Value: value, Height: 1}, nil
 	}
+
 	if value < node.Value {
-		node.Left = insert(node.Left, value)
-	} else {
-		node.Right = insert(node.Right, value)
-	}
-	return balance(node)
-}
-
-func (tree *AVLTree) Search(value int) (bool, error) {
-	return search(tree.Root, value)
-}
-
-func search(node *TreeNode, value int) (bool, error) {
-	if node == nil {
-		return false, nil
-	}
-	if value == node.Value {
-		return true, nil
-	} else if value < node.Value {
-		return search(node.Left, value)
-	} else {
-		return search(node.Right, value)
-	}
-}
-
-func (tree *AVLTree) Remove(value int) error {
-	var error error
-	tree.Root, error = remove(tree.Root, value)
-	return error
-}
-
-func remove(node *TreeNode, value int) (*TreeNode, error) {
-	if node == nil {
-		return nil, errors.New(ds_errors.ValueNotFoundError)
-	}
-	if value < node.Value {
-		var error error
-		node.Left, error = remove(node.Left, value)
-		if error != nil {
-			return nil, error
+		var err error
+		node.Left, err = insert(node.Left, value)
+		if err != nil {
+			return nil, err
 		}
 	} else if value > node.Value {
-		var error error
-		node.Right, error = remove(node.Right, value)
-		if error != nil {
-			return nil, error
+		var err error
+		node.Right, err = insert(node.Right, value)
+		if err != nil {
+			return nil, err
 		}
 	} else {
-		if node.Left == nil {
-			return node.Right, nil
-		} else if node.Right == nil {
-			return node.Left, nil
-		}
-		minLargerNode := findMin(node.Right)
-		node.Value = minLargerNode.Value
-		var error error
-		node.Right, error = remove(node.Right, minLargerNode.Value)
-		if error != nil {
-			return nil, error
-		}
+		return node, errors.New(ds_errors.ValueExistsError)
 	}
-	return balance(node), nil
+
+	node.Height = 1 + max(height(node.Left), height(node.Right))
+	balance := getBalance(node)
+
+	// Left Left Case
+	if balance > 1 && value < node.Left.Value {
+		return rightRotate(node), nil
+	}
+
+	// Right Right Case
+	if balance < -1 && value > node.Right.Value {
+		return leftRotate(node), nil
+	}
+
+	// Left Right Case
+	if balance > 1 && value > node.Left.Value {
+		node.Left = leftRotate(node.Left)
+		return rightRotate(node), nil
+	}
+
+	// Right Left Case
+	if balance < -1 && value < node.Right.Value {
+		node.Right = rightRotate(node.Right)
+		return leftRotate(node), nil
+	}
+
+	return node, nil
 }
 
-func findMin(node *TreeNode) *TreeNode {
-	for node.Left != nil {
-		node = node.Left
-	}
-	return node
+// Find finds a value in the AVL tree
+func (t *AVLTree) Find(value int) (*TreeNode, bool) {
+	return find(t.Root, value)
 }
 
-func balance(node *TreeNode) *TreeNode {
-	updateHeight(node)
-	if balanceFactor(node) > 1 {
-		if balanceFactor(node.Left) < 0 {
-			node.Left = rotateLeft(node.Left)
-		}
-		return rotateRight(node)
+// find is a recursive helper function to find a value in the subtree rooted with node
+func find(node *TreeNode, value int) (*TreeNode, bool) {
+	if node == nil {
+		return nil, false
 	}
-	if balanceFactor(node) < -1 {
-		if balanceFactor(node.Right) > 0 {
-			node.Right = rotateRight(node.Right)
-		}
-		return rotateLeft(node)
+
+	if value < node.Value {
+		return find(node.Left, value)
+	} else if value > node.Value {
+		return find(node.Right, value)
+	} else {
+		return node, true
 	}
-	return node
 }
 
+// Delete deletes a value from the AVL tree
+func (t *AVLTree) Delete(value int) error {
+	var err error
+	t.Root, err = delete(t.Root, value)
+	return err
+}
+
+// delete is a recursive helper function to delete a value in the subtree rooted with node
+func delete(node *TreeNode, value int) (*TreeNode, error) {
+	if node == nil {
+		return node, nil
+	}
+
+	if value < node.Value {
+		var err error
+		node.Left, err = delete(node.Left, value)
+		if err != nil {
+			return nil, err
+		}
+	} else if value > node.Value {
+		var err error
+		node.Right, err = delete(node.Right, value)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		if node.Left == nil || node.Right == nil {
+			var temp *TreeNode
+			if node.Left != nil {
+				temp = node.Left
+			} else {
+				temp = node.Right
+			}
+
+			if temp == nil {
+				node = nil
+			} else {
+				*node = *temp
+			}
+		} else {
+			temp := minValueNode(node.Right)
+			node.Value = temp.Value
+			var err error
+			node.Right, err = delete(node.Right, temp.Value)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	if node == nil {
+		return node, nil
+	}
+
+	node.Height = 1 + max(height(node.Left), height(node.Right))
+	balance := getBalance(node)
+
+	// Left Left Case
+	if balance > 1 && getBalance(node.Left) >= 0 {
+		return rightRotate(node), nil
+	}
+
+	// Left Right Case
+	if balance > 1 && getBalance(node.Left) < 0 {
+		node.Left = leftRotate(node.Left)
+		return rightRotate(node), nil
+	}
+
+	// Right Right Case
+	if balance < -1 && getBalance(node.Right) <= 0 {
+		return leftRotate(node), nil
+	}
+
+	// Right Left Case
+	if balance < -1 && getBalance(node.Right) > 0 {
+		node.Right = rightRotate(node.Right)
+		return leftRotate(node), nil
+	}
+
+	return node, nil
+}
+
+// GetBalance returns the balance factor of the node
+func (t *AVLTree) GetBalance(node *TreeNode) int {
+	return getBalance(node)
+}
+
+// minValueNode returns the node with the minimum value found in that tree
+func minValueNode(node *TreeNode) *TreeNode {
+	current := node
+	for current.Left != nil {
+		current = current.Left
+	}
+	return current
+}
+
+// height returns the height of the node
 func height(node *TreeNode) int {
 	if node == nil {
 		return 0
@@ -127,30 +204,46 @@ func height(node *TreeNode) int {
 	return node.Height
 }
 
-func updateHeight(node *TreeNode) {
-	node.Height = max(height(node.Left), height(node.Right)) + 1
+// max returns the maximum of two integers
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
-func balanceFactor(node *TreeNode) int {
+// getBalance returns the balance factor of the node
+func getBalance(node *TreeNode) int {
+	if node == nil {
+		return 0
+	}
 	return height(node.Left) - height(node.Right)
 }
 
-func rotateRight(y *TreeNode) *TreeNode {
+// rightRotate performs a right rotation on the subtree rooted with y
+func rightRotate(y *TreeNode) *TreeNode {
 	x := y.Left
 	T2 := x.Right
+
 	x.Right = y
 	y.Left = T2
-	updateHeight(y)
-	updateHeight(x)
+
+	y.Height = max(height(y.Left), height(y.Right)) + 1
+	x.Height = max(height(x.Left), height(x.Right)) + 1
+
 	return x
 }
 
-func rotateLeft(x *TreeNode) *TreeNode {
+// leftRotate performs a left rotation on the subtree rooted with x
+func leftRotate(x *TreeNode) *TreeNode {
 	y := x.Right
 	T2 := y.Left
+
 	y.Left = x
 	x.Right = T2
-	updateHeight(x)
-	updateHeight(y)
+
+	x.Height = max(height(x.Left), height(x.Right)) + 1
+	y.Height = max(height(y.Left), height(y.Right)) + 1
+
 	return y
 }
