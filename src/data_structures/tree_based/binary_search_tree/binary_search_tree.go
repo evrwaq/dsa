@@ -79,7 +79,7 @@ func remove(node *TreeNode, value int) (*TreeNode, error) {
 		} else if node.Right == nil {
 			return node.Left, nil
 		}
-		minLargerNode := findMin(node.Right)
+		minLargerNode := FindMin(node.Right)
 		node.Value = minLargerNode.Value
 		var error error
 		node.Right, error = remove(node.Right, minLargerNode.Value)
@@ -87,7 +87,7 @@ func remove(node *TreeNode, value int) (*TreeNode, error) {
 	}
 }
 
-func findMin(node *TreeNode) *TreeNode {
+func FindMin(node *TreeNode) *TreeNode {
 	for node.Left != nil {
 		node = node.Left
 	}
