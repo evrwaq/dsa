@@ -58,9 +58,9 @@ func search(node *TreeNode, value int) (bool, error) {
 }
 
 func (tree *AVLTree) Remove(value int) error {
-	var err error
-	tree.Root, err = remove(tree.Root, value)
-	return err
+	var error error
+	tree.Root, error = remove(tree.Root, value)
+	return error
 }
 
 func remove(node *TreeNode, value int) (*TreeNode, error) {
@@ -68,16 +68,16 @@ func remove(node *TreeNode, value int) (*TreeNode, error) {
 		return nil, errors.New(ds_errors.ValueNotFoundError)
 	}
 	if value < node.Value {
-		var err error
-		node.Left, err = remove(node.Left, value)
-		if err != nil {
-			return nil, err
+		var error error
+		node.Left, error = remove(node.Left, value)
+		if error != nil {
+			return nil, error
 		}
 	} else if value > node.Value {
-		var err error
-		node.Right, err = remove(node.Right, value)
-		if err != nil {
-			return nil, err
+		var error error
+		node.Right, error = remove(node.Right, value)
+		if error != nil {
+			return nil, error
 		}
 	} else {
 		if node.Left == nil {
@@ -87,10 +87,10 @@ func remove(node *TreeNode, value int) (*TreeNode, error) {
 		}
 		minLargerNode := findMin(node.Right)
 		node.Value = minLargerNode.Value
-		var err error
-		node.Right, err = remove(node.Right, minLargerNode.Value)
-		if err != nil {
-			return nil, err
+		var error error
+		node.Right, error = remove(node.Right, minLargerNode.Value)
+		if error != nil {
+			return nil, error
 		}
 	}
 	return balance(node), nil
