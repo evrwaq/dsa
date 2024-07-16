@@ -1,6 +1,7 @@
 package data_structures_test
 
 import (
+	ds_errors "dsa/src/data_structures/errors"
 	ds "dsa/src/data_structures/tree_based/avl_tree"
 	"testing"
 )
@@ -73,6 +74,40 @@ func TestAVLTreeSearch(t *testing.T) {
 		found, error := tree.Search(10)
 		if error != nil || found {
 			t.Errorf("expected not to find value 10")
+		}
+	})
+}
+
+func TestAVLTreeRemove(t *testing.T) {
+	tree := ds.NewAVLTree()
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(7)
+	tree.Insert(1)
+	tree.Insert(4)
+
+	t.Run("Remove elements", func(t *testing.T) {
+		error := tree.Remove(3)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		found, error := tree.Search(3)
+		if error != nil || found {
+			t.Errorf("expected not to find value 3")
+		}
+
+		error = tree.Remove(5)
+		if error != nil {
+			t.Errorf("unexpected error: %v", error)
+		}
+		found, error = tree.Search(5)
+		if error != nil || found {
+			t.Errorf("expected not to find value 5")
+		}
+
+		error = tree.Remove(10)
+		if error == nil {
+			t.Error(ds_errors.ExpectedError)
 		}
 	})
 }
