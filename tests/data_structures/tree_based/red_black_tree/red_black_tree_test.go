@@ -125,4 +125,9 @@ func TestRBTreeEmpty(t *testing.T) {
 	if tree.IsEmpty() {
 		t.Error("expected the tree to not be empty")
 	}
+
+	tree.Remove(10)
+	if !tree.IsEmpty() {
+		t.Error("expected the tree to be empty after removing the only element")
+	}
 }
