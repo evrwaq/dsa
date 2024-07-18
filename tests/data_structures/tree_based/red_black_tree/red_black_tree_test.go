@@ -79,4 +79,9 @@ func TestRBTreeRemove(t *testing.T) {
 			t.Errorf("did not expect to find value %d in the tree after removal", test.value)
 		}
 	}
+
+	err := tree.Remove(30)
+	if err == nil {
+		t.Error("expected an error when trying to remove a non-existent value")
+	}
 }
