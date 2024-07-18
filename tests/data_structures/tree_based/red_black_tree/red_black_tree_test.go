@@ -178,3 +178,31 @@ func TestRBTreeRotation(t *testing.T) {
 		t.Error("expected to find value 30 in the tree after rotation")
 	}
 }
+
+func TestRBTreeComplexOperations(t *testing.T) {
+	tree := ds.NewRBTree()
+	values := []int{10, 85, 15, 70, 20, 60, 30, 50, 65, 80, 90, 40, 5, 55}
+	for _, value := range values {
+		tree.Insert(value)
+	}
+
+	for _, value := range values {
+		found, _ := tree.Search(value)
+		if !found {
+			t.Errorf("expected to find value %d in the tree", value)
+		}
+	}
+
+	removeValues := []int{10, 85, 55}
+	for _, value := range removeValues {
+		err := tree.Remove(value)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		found, _ := tree.Search(value)
+		if found {
+			t.Errorf("did not expect to find value %d in the tree after removal", value)
+		}
+		verifyRBTreeProperties(t, tree.Root)
+	}
+}
