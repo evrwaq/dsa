@@ -47,3 +47,36 @@ func TestRBTreeInsert(t *testing.T) {
 		}
 	}
 }
+
+func TestRBTreeRemove(t *testing.T) {
+	tree := ds.NewRBTree()
+	values := []int{10, 15, 5, 20, 1, 7, 12, 18, 25}
+	for _, value := range values {
+		tree.Insert(value)
+	}
+
+	removeTests := []struct {
+		value int
+	}{
+		{10},
+		{15},
+		{5},
+		{20},
+		{1},
+		{7},
+		{12},
+		{18},
+		{25},
+	}
+
+	for _, test := range removeTests {
+		err := tree.Remove(test.value)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		found, _ := tree.Search(test.value)
+		if found {
+			t.Errorf("did not expect to find value %d in the tree after removal", test.value)
+		}
+	}
+}
