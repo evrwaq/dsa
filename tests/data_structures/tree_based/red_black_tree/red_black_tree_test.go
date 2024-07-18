@@ -5,13 +5,6 @@ import (
 	"testing"
 )
 
-func TestRBTreeInitialEmpty(t *testing.T) {
-	tree := ds.NewRBTree()
-	if !tree.IsEmpty() {
-		t.Error("expected the tree to be empty initially")
-	}
-}
-
 func TestRBTreeInsert(t *testing.T) {
 	tree := ds.NewRBTree()
 	tree.Insert(10)
@@ -119,5 +112,17 @@ func TestRBTreeSearch(t *testing.T) {
 		if found != test.expected {
 			t.Errorf("expected to find value %d in the tree: %v", test.value, test.expected)
 		}
+	}
+}
+
+func TestRBTreeEmpty(t *testing.T) {
+	tree := ds.NewRBTree()
+	if !tree.IsEmpty() {
+		t.Error("expected the tree to be empty")
+	}
+
+	tree.Insert(10)
+	if tree.IsEmpty() {
+		t.Error("expected the tree to not be empty")
 	}
 }
