@@ -131,3 +131,29 @@ func TestRBTreeEmpty(t *testing.T) {
 		t.Error("expected the tree to be empty after removing the only element")
 	}
 }
+
+func TestRBTreeProperties(t *testing.T) {
+	tree := ds.NewRBTree()
+	values := []int{10, 15, 5, 20, 1, 7, 12, 18, 25}
+	for _, value := range values {
+		tree.Insert(value)
+	}
+
+	verifyRBTreeProperties(t, tree.Root)
+}
+
+func verifyRBTreeProperties(t *testing.T, node *ds.RBTreeNode) {
+	if node == nil {
+		return
+	}
+
+	if node.Color == ds.Red {
+		if (node.Left != nil && node.Left.Color == ds.Red) ||
+			(node.Right != nil && node.Right.Color == ds.Red) {
+			t.Error("Red-Black Tree property violated: Red node has red child")
+		}
+	}
+
+	verifyRBTreeProperties(t, node.Left)
+	verifyRBTreeProperties(t, node.Right)
+}
