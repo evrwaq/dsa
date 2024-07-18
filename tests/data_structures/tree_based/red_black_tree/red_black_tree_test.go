@@ -157,3 +157,24 @@ func verifyRBTreeProperties(t *testing.T, node *ds.RBTreeNode) {
 	verifyRBTreeProperties(t, node.Left)
 	verifyRBTreeProperties(t, node.Right)
 }
+
+func TestRBTreeRotation(t *testing.T) {
+	tree := ds.NewRBTree()
+	values := []int{10, 20, 30}
+	for _, value := range values {
+		tree.Insert(value)
+	}
+
+	found, _ := tree.Search(10)
+	if !found {
+		t.Error("expected to find value 10 in the tree after rotation")
+	}
+	found, _ = tree.Search(20)
+	if !found {
+		t.Error("expected to find value 20 in the tree after rotation")
+	}
+	found, _ = tree.Search(30)
+	if !found {
+		t.Error("expected to find value 30 in the tree after rotation")
+	}
+}
