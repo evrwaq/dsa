@@ -58,3 +58,32 @@ func TestTrieSearch(t *testing.T) {
 		}
 	}
 }
+
+func TestTrieStartsWith(t *testing.T) {
+	trie := ds.NewTrie()
+
+	words := []string{"apple", "app", "application", "bat", "ball"}
+	for _, word := range words {
+		trie.Insert(word)
+	}
+
+	tests := []struct {
+		prefix   string
+		expected bool
+	}{
+		{"app", true},
+		{"appl", true},
+		{"bat", true},
+		{"ba", true},
+		{"cat", false},
+		{"batt", false},
+		{"", true},
+	}
+
+	for _, tt := range tests {
+		found := trie.StartsWith(tt.prefix)
+		if found != tt.expected {
+			t.Errorf("expected %v, got %v for prefix %s", tt.expected, found, tt.prefix)
+		}
+	}
+}
