@@ -43,3 +43,14 @@ func (t *Trie) Search(word string) bool {
 	}
 	return node.IsEnd
 }
+
+func (t *Trie) StartsWith(prefix string) bool {
+	node := t.Root
+	for _, char := range prefix {
+		if _, exists := node.Children[char]; !exists {
+			return false
+		}
+		node = node.Children[char]
+	}
+	return true
+}
