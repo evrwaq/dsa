@@ -87,3 +87,25 @@ func TestTrieStartsWith(t *testing.T) {
 		}
 	}
 }
+
+func TestTrieEdgeCases(t *testing.T) {
+	trie := ds.NewTrie()
+
+	if trie.Search("anything") {
+		t.Error("expected false for searching any word in an empty trie")
+	}
+
+	trie.Insert("")
+	if !trie.Search("") {
+		t.Error("expected true for searching an empty string")
+	}
+
+	if !trie.StartsWith("") {
+		t.Error("expected true for StartsWith an empty string on empty trie")
+	}
+
+	trie.Insert("a")
+	if !trie.StartsWith("") {
+		t.Error("expected true for StartsWith an empty string on non-empty trie")
+	}
+}
