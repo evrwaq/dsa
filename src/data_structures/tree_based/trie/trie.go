@@ -32,3 +32,14 @@ func (t *Trie) Insert(word string) {
 	}
 	node.IsEnd = true
 }
+
+func (t *Trie) Search(word string) bool {
+	node := t.Root
+	for _, char := range word {
+		if _, exists := node.Children[char]; !exists {
+			return false
+		}
+		node = node.Children[char]
+	}
+	return node.IsEnd
+}
