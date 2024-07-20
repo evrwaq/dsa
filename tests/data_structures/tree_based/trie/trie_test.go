@@ -28,3 +28,33 @@ func TestTrieInsert(t *testing.T) {
 		}
 	}
 }
+
+func TestTrieSearch(t *testing.T) {
+	trie := ds.NewTrie()
+
+	words := []string{"apple", "app", "application", "bat", "ball"}
+	for _, word := range words {
+		trie.Insert(word)
+	}
+
+	tests := []struct {
+		word     string
+		expected bool
+	}{
+		{"apple", true},
+		{"app", true},
+		{"application", true},
+		{"bat", true},
+		{"ball", true},
+		{"appl", false},
+		{"batman", false},
+		{"cat", false},
+	}
+
+	for _, tt := range tests {
+		found := trie.Search(tt.word)
+		if found != tt.expected {
+			t.Errorf("expected %v, got %v for word %s", tt.expected, found, tt.word)
+		}
+	}
+}
