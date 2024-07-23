@@ -1,32 +1,80 @@
-package data_structures_test
+package data_structures_tests
 
 import (
-	"testing"
-
 	ds "dsa/src/data_structures/tree_based/suffix_tree"
+	"testing"
 )
 
-func TestSuffixTreeInsert(t *testing.T) {
-	tree := ds.NewSuffixTree()
-	text := "banana"
+func TestNewSuffixTree(t *testing.T) {
+	st := ds.NewSuffixTree("banana")
 
-	for i := range text {
-		tree.Insert(text[i:], i)
+	if st == nil {
+		t.Errorf("Expected non-nil SuffixTree")
 	}
+}
 
-	node := tree.Root
-	if len(node.Children) == 0 {
-		t.Error("expected non-empty root children")
+func TestSuffixTreeStructure(t *testing.T) {
+	st := ds.NewSuffixTree("banana")
+	if st.root == nil {
+		t.Errorf("Expected non-nil root")
 	}
+	if len(st.root.children) == 0 {
+		t.Errorf("Expected root to have children")
+	}
+}
 
-	for _, char := range "banana" {
-		if _, exists := node.Children[char]; !exists {
-			t.Errorf("expected to find character %c in the suffix tree", char)
+func TestSuffixTreeConstruction(t *testing.T) {
+	st := ds.NewSuffixTree("banana")
+
+	var checkNode func(node *ds.SuffixTreeNode, depth int)
+	checkNode = func(node *ds.SuffixTreeNode, depth int) {
+		if node == nil {
+			return
 		}
-		node = node.Children[char]
+
+		for _, child := range node.children {
+			if child.start == nil || child.end == nil {
+				t.Errorf("Expected valid start and end for node at depth %d", depth)
+			}
+			checkNode(child, depth+1)
+		}
 	}
 
-	if len(node.Indexes) == 0 {
-		t.Error("expected indexes at the leaf node")
+	checkNode(st.root, 0)
+}
+
+func TestSuffixTreeEdges(t *testing.T) {
+	st := ds.NewSuffixTree("banana")
+
+	var edgeStrings func(node *ds.SuffixTreeNode, depth int) []string
+	edgeStrings = func(node *ds.SuffixTreeNode, depth int) []string {
+		if node == nil {
+			return []string{}
+		}
+
+		var edges []string
+		for _, child := range node.children {
+			if child.start != nil && child.end != nil {
+				edges = append(edges, st.text[*child.start:*child.end+1])
+			}
+			edges = append(edges, edgeStrings(child, depth+1)...)
+		}
+		return edges
+	}
+
+	edges := edgeStrings(st.root, 0)
+
+	expectedEdges := []string{"banana", "a", "na", "n", "a"}
+	for _, edge := range expectedEdges {
+		found := false
+		for _, e := range edges {
+			if e == edge {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Errorf("Expected edge %s not found", edge)
+		}
 	}
 }
