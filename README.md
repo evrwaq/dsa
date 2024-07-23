@@ -1,4 +1,5 @@
 # Data Structures and Algorithms (DSA)
+
 *[Leia em Português](README.pt-br.md)*
 
 This project aims to demonstrate the main data structures and algorithms, as well as document and explain each one.
