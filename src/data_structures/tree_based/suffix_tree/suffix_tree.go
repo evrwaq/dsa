@@ -1,137 +1,162 @@
 package data_structures
 
+import (
+	"fmt"
+)
+
 type SuffixTreeNode struct {
-    children map[rune]*SuffixTreeNode
-    suffixLink *SuffixTreeNode
-    start, *end *int
-    suffixIndex int
+	Children   map[rune]*SuffixTreeNode
+	Start      int
+	End        *int
+	SuffixLink *SuffixTreeNode
 }
 
 type SuffixTree struct {
-    root *SuffixTreeNode
-    text string
-    activeNode *SuffixTreeNode
-    activeEdge int
-    activeLength int
-    remainingSuffixCount int
-    leafEnd *int
-    size int
+	Root *SuffixTreeNode
+	Text string
+	Size int
 }
 
 func NewSuffixTree(text string) *SuffixTree {
-    size := len(text)
-    leafEnd := -1
-    root := &SuffixTreeNode{
-        children:    make(map[rune]*SuffixTreeNode),
-        suffixLink:  nil,
-        start:       nil,
-        end:         nil,
-        suffixIndex: -1,
-    }
-    st := &SuffixTree{
-        root:        root,
-        text:        text,
-        activeNode:  root,
-        activeEdge:  -1,
-        activeLength: 0,
-        remainingSuffixCount: 0,
-        leafEnd:     &leafEnd,
-        size:        size,
-    }
-    st.buildSuffixTree()
-    return st
+	tree := &SuffixTree{
+		Text: text,
+		Size: len(text),
+	}
+	tree.build()
+	return tree
 }
 
-func (st *SuffixTree) buildSuffixTree() {
-    for i := 0; i < st.size; i++ {
-        st.extendSuffixTree(i)
-    }
+func (tree *SuffixTree) build() {
+	tree.Root = &SuffixTreeNode{
+		Children: make(map[rune]*SuffixTreeNode),
+		Start:    -1,
+		End:      new(int),
+	}
+	*tree.Root.End = -1
+
+	activeNode := tree.Root
+	activeEdge := -1
+	activeLength := 0
+
+	remainingSuffixCount := 0
+	leafEnd := -1
+
+	for i := 0; i < tree.Size; i++ {
+		previousNode := (*SuffixTreeNode)(nil)
+		remainingSuffixCount++
+		leafEnd = i
+
+		for remainingSuffixCount > 0 {
+			if activeLength == 0 {
+				activeEdge = i
+			}
+
+			if _, ok := activeNode.Children[rune(tree.Text[activeEdge])]; !ok {
+				activeNode.Children[rune(tree.Text[activeEdge])] = &SuffixTreeNode{
+					Children: make(map[rune]*SuffixTreeNode),
+					Start:    i,
+					End:      &leafEnd,
+				}
+
+				if previousNode != nil {
+					previousNode.SuffixLink = activeNode
+					previousNode = nil
+				}
+			} else {
+				next := activeNode.Children[rune(tree.Text[activeEdge])]
+				edgeLength := *next.End - next.Start + 1
+
+				if activeLength >= edgeLength {
+					activeEdge += edgeLength
+					activeLength -= edgeLength
+					activeNode = next
+					continue
+				}
+
+				if tree.Text[next.Start+activeLength] == tree.Text[i] {
+					if previousNode != nil && activeNode != tree.Root {
+						previousNode.SuffixLink = activeNode
+						previousNode = nil
+					}
+					activeLength++
+					break
+				}
+
+				splitEnd := next.Start + activeLength - 1
+				split := &SuffixTreeNode{
+					Children: make(map[rune]*SuffixTreeNode),
+					Start:    next.Start,
+					End:      &splitEnd,
+				}
+				activeNode.Children[rune(tree.Text[activeEdge])] = split
+				split.Children[rune(tree.Text[i])] = &SuffixTreeNode{
+					Children: make(map[rune]*SuffixTreeNode),
+					Start:    i,
+					End:      &leafEnd,
+				}
+				next.Start += activeLength
+				split.Children[rune(tree.Text[next.Start])] = next
+
+				if previousNode != nil {
+					previousNode.SuffixLink = split
+				}
+				previousNode = split
+			}
+
+			remainingSuffixCount--
+
+			if activeNode == tree.Root && activeLength > 0 {
+				activeLength--
+				activeEdge = i - remainingSuffixCount + 1
+			} else if activeNode != tree.Root {
+				activeNode = activeNode.SuffixLink
+			}
+		}
+	}
 }
 
-func (st *SuffixTree) extendSuffixTree(pos int) {
-    st.leafEnd = &pos
-    st.remainingSuffixCount++
-    
-    var lastNewNode *SuffixTreeNode
-    
-    for st.remainingSuffixCount > 0 {
-        if st.activeLength == 0 {
-            st.activeEdge = pos
-        }
-        
-        edge := rune(st.text[st.activeEdge])
-        
-        if st.activeNode.children[edge] == nil {
-            st.activeNode.children[edge] = &SuffixTreeNode{
-                children:    make(map[rune]*SuffixTreeNode),
-                start:       &pos,
-                end:         st.leafEnd,
-                suffixIndex: -1,
-            }
-            
-            if lastNewNode != nil {
-                lastNewNode.suffixLink = st.activeNode
-                lastNewNode = nil
-            }
-        } else {
-            next := st.activeNode.children[edge]
-            if st.walkDown(next) {
-                continue
-            }
-            
-            if st.text[next.start + st.activeLength] == st.text[pos] {
-                if lastNewNode != nil && st.activeNode != st.root {
-                    lastNewNode.suffixLink = st.activeNode
-                    lastNewNode = nil
-                }
-                
-                st.activeLength++
-                break
-            }
-            
-            splitEnd := next.start + st.activeLength - 1
-            split := &SuffixTreeNode{
-                children:    make(map[rune]*SuffixTreeNode),
-                start:       next.start,
-                end:         &splitEnd,
-                suffixIndex: -1,
-            }
-            st.activeNode.children[edge] = split
-            
-            split.children[rune(st.text[pos])] = &SuffixTreeNode{
-                children:    make(map[rune]*SuffixTreeNode),
-                start:       &pos,
-                end:         st.leafEnd,
-                suffixIndex: -1,
-            }
-            next.start += st.activeLength
-            split.children[rune(st.text[next.start])] = next
-            
-            if lastNewNode != nil {
-                lastNewNode.suffixLink = split
-            }
-            
-            lastNewNode = split
-        }
-        
-        st.remainingSuffixCount--
-        
-        if st.activeNode == st.root && st.activeLength > 0 {
-            st.activeLength--
-            st.activeEdge = pos - st.remainingSuffixCount + 1
-        } else if st.activeNode != st.root {
-            st.activeNode = st.activeNode.suffixLink
-        }
-    }
+func (tree *SuffixTree) PrintTree() {
+	tree.printNode(tree.Root, 0)
 }
 
-func (st *SuffixTree) walkDown(currNode *SuffixTreeNode) bool {
-    edgeLength := *currNode.end - *currNode.start + 1
-    if st.activeLength >= edgeLength {
-        st.activeEdge += edgeLength
-        st.activeLength -= edgeLength
-        st.activeNode = currNode
-        return true
-    }
-    return false
+func (tree *SuffixTree) printNode(node *SuffixTreeNode, indent int) {
+	if node == nil {
+		return
+	}
+	if node.Start != -1 {
+		fmt.Printf("%*s", indent, "")
+		fmt.Printf("%s\n", tree.Text[node.Start:min(*node.End+1, tree.Size)])
+	}
+	for _, child := range node.Children {
+		tree.printNode(child, indent+2)
+	}
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func (tree *SuffixTree) ContainsSuffix(suffix string) bool {
+	currentNode := tree.Root
+	index := 0
+	for index < len(suffix) {
+		if node, exists := currentNode.Children[rune(suffix[index])]; exists {
+			start := node.Start
+			end := min(*node.End+1, tree.Size)
+			if end-start > len(suffix)-index {
+				end = start + len(suffix) - index
+			}
+			if tree.Text[start:end] != suffix[index:index+end-start] {
+				return false
+			}
+			index += end - start
+			currentNode = node
+		} else {
+			return false
+		}
+	}
+	return true
 }
