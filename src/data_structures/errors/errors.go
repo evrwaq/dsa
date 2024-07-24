@@ -1,6 +1,5 @@
-package data_structures
+package ds_errors
 
-// Error message constants
 const (
 	IndexOutOfBoundsError = "index out of bounds"
 	DequeEmptyError       = "deque is empty"
@@ -8,4 +7,6 @@ const (
 	StackEmptyError       = "stack is empty"
 	UnexpectedError       = "unexpected error: %v"
 	ExpectedError         = "expected error, got nil"
+	ValueNotFoundError    = "value not found in the tree"
+	ValueExistsError      = "value already exists in the AVL tree"
 )

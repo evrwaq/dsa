@@ -6,6 +6,9 @@ This project aims to demonstrate the main data structures and algorithms, as wel
 
 ## Data Structures
 
+<details>
+  <summary>Linear Data Structures</summary>
+
 ### Array
 
 An Array is a data structure that stores a collection of elements in contiguous memory locations. Each element can be directly accessed by its index, making access operations very fast. However, insertion and removal of elements can be time-consuming as they may require shifting other elements.
@@ -27,9 +30,9 @@ An Array is a data structure that stores a collection of elements in contiguous 
   - Worst case: O(n) - linear time (shifting of elements).
 
 **Implementation in Go:**
-The implementation of the Array data structure in Go can be found in the [`array.go`](src/data_structures/array.go) file.
+The implementation of the Array data structure in Go can be found in the [`array.go`](src/data_structures/linear/array.go) file.
 
-### Linked List (English)
+### Linked List
 
 A Linked List is a linear data structure where each element is a node that contains a value and a reference (or pointer) to the next node in the sequence.
 
@@ -50,23 +53,23 @@ A Linked List is a linear data structure where each element is a node that conta
   - Worst case: O(n) - linear time (removal from the end).
 
 **Implementation in Go:**
-The implementation of the Linked List data structure in Go can be found in the file [`linked_list.go`](src/data_structures/linked_list.go).
+The implementation of the Linked List data structure in Go can be found in the file [`linked_list.go`](src/data_structures/linear/linked_list.go).
 
 ### Stack
 
-A Stack is a linear data structure that follows the Last In First Out (LIFO) principle. Elements can be added and removed only from the top of the stack.
+A Stack is a linear data structure that follows the Last In, First Out (LIFO) principle. Elements are added and removed from the same end, called the top of the stack.
 
 **Characteristics:**
-- **LIFO**: Last In First Out ordering.
+- **LIFO**: Last In, First Out ordering.
 - **Variable Size**: The stack can grow and shrink dynamically.
 - **Top Access**: Access to elements is only at the top of the stack.
 
 **Main Operations and Their Complexities:**
-- **Push**:
+- **Push** (add an element to the top):
   - O(1) - constant time.
-- **Pop**:
+- **Pop** (remove an element from the top):
   - O(1) - constant time.
-- **Peek**:
+- **Peek** (view the top element without removing it):
   - O(1) - constant time.
 - **Size**:
   - O(1) - constant time.
@@ -74,23 +77,23 @@ A Stack is a linear data structure that follows the Last In First Out (LIFO) pri
   - O(1) - constant time.
 
 **Implementation in Go:**
-The implementation of the Stack data structure in Go can be found in the file [`stack.go`](src/data_structures/stack.go).
+The implementation of the Stack data structure in Go can be found in the file [`stack.go`](src/data_structures/linear/stack.go).
 
 ### Queue
 
-A Queue is a linear data structure that follows the First In First Out (FIFO) principle. Elements can be added at the end and removed from the front of the queue.
+A Queue is a linear data structure that follows the First In, First Out (FIFO) principle. Elements are added at the back (rear) and removed from the front.
 
 **Characteristics:**
-- **FIFO**: First In First Out ordering.
+- **FIFO**: First In, First Out ordering.
 - **Variable Size**: The queue can grow and shrink dynamically.
-- **Front and Rear Access**: Access to elements is only at the front and rear of the queue.
+- **Front and Rear Access**: Elements are added at the rear and removed from the front.
 
 **Main Operations and Their Complexities:**
-- **Enqueue**:
+- **Enqueue** (add an element to the rear):
   - O(1) - constant time.
-- **Dequeue**:
+- **Dequeue** (remove an element from the front):
   - O(1) - constant time.
-- **Peek**:
+- **Peek** (view the front element without removing it):
   - O(1) - constant time.
 - **Size**:
   - O(1) - constant time.
@@ -98,7 +101,7 @@ A Queue is a linear data structure that follows the First In First Out (FIFO) pr
   - O(1) - constant time.
 
 **Implementation in Go:**
-The implementation of the Queue data structure in Go can be found in the file [`queue.go`](src/data_structures/queue.go).
+The implementation of the Queue data structure in Go can be found in the file [`queue.go`](src/data_structures/linear/queue.go).
 
 ### Deque
 
@@ -124,7 +127,40 @@ A Deque (Double-ended Queue) is a linear data structure that allows insertion an
   - O(1) - constant time.
 
 **Implementation in Go:**
-The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/deque.go).
+The implementation of the Deque data structure in Go can be found in the file [`deque.go`](src/data_structures/linear/deque.go).
+
+</details>
+
+<details>
+  <summary>Tree-based Data Structures</summary>
+
+### Tree
+
+A Tree is a hierarchical data structure consisting of nodes, where each node has a value and references to its left and right children.
+
+**Characteristics:**
+- **Hierarchical Structure**: Composed of nodes with parent-child relationships.
+- **Root Node**: The top node with zero or more child nodes.
+- **Subtrees**: Each child node can have its own children, forming subtrees.
+- **Binary Trees**: Trees where each node has at most two children (left and right).
+
+**Main operations and their complexities:**
+- **Insert**:
+  - Average case: O(log n) - logarithmic time.
+  - Worst case: O(n) - linear time (unbalanced tree).
+- **Search**:
+  - Average case: O(log n) - logarithmic time.
+  - Worst case: O(n) - linear time (unbalanced tree).
+- **Remove**:
+  - Average case: O(log n) - logarithmic time.
+  - Worst case: O(n) - linear time (unbalanced tree).
+- **IsEmpty**:
+  - O(1) - constant time.
+
+**Implementation in Go:**
+The implementation of the Tree data structure in Go can be found in the file [`tree.go`](src/data_structures/tree-based/tree.go).
+
+</details>
 
 ## Algorithms
 
