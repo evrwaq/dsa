@@ -102,3 +102,22 @@ func equal(a, b []string) bool {
 	}
 	return true
 }
+
+func TestDFS(t *testing.T) {
+	al := ds.NewAdjacencyList()
+	al.AddVertex("A")
+	al.AddVertex("B")
+	al.AddVertex("C")
+	al.AddVertex("D")
+	al.AddEdge("A", "B")
+	al.AddEdge("A", "C")
+	al.AddEdge("B", "D")
+	al.AddEdge("C", "D")
+
+	expectedOrder := []string{"A", "B", "D", "C"}
+	order := al.DFS("A")
+
+	if !equal(order, expectedOrder) {
+		t.Errorf("Expected DFS order %v, got %v", expectedOrder, order)
+	}
+}
