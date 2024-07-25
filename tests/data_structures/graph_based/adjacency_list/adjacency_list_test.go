@@ -41,3 +41,20 @@ func TestGetEdgesNonExistentVertex(t *testing.T) {
 		t.Errorf("Expected nil, got %v", edges)
 	}
 }
+
+func TestRemoveVertex(t *testing.T) {
+	al := ds.NewAdjacencyList()
+	al.AddVertex("A")
+	al.AddVertex("B")
+	al.AddEdge("A", "B")
+	al.RemoveVertex("A")
+
+	if len(al.GetVertices()) != 1 {
+		t.Errorf("Expected 1 vertex, got %d", len(al.GetVertices()))
+	}
+
+	edges := al.GetEdges("A")
+	if edges != nil {
+		t.Errorf("Expected nil, got %v", edges)
+	}
+}
