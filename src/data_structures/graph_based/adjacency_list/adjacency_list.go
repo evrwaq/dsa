@@ -50,3 +50,13 @@ func (al *AdjacencyList) RemoveVertex(vertex string) {
 		}
 	}
 }
+
+func (al *AdjacencyList) RemoveEdge(from, to string) {
+	if edges, exists := al.vertices[from]; exists {
+		for i := len(edges) - 1; i >= 0; i-- {
+			if edges[i] == to {
+				al.vertices[from] = append(edges[:i], edges[i+1:]...)
+			}
+		}
+	}
+}
