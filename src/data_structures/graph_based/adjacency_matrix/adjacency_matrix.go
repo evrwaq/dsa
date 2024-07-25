@@ -73,3 +73,12 @@ func (am *AdjacencyMatrix) RemoveEdge(from, to string) {
 		am.matrix[fromIndex][toIndex] = false
 	}
 }
+
+func (am *AdjacencyMatrix) AreVerticesConnected(from, to string) bool {
+	fromIndex, fromExists := am.indices[from]
+	toIndex, toExists := am.indices[to]
+	if fromExists && toExists {
+		return am.matrix[fromIndex][toIndex]
+	}
+	return false
+}
