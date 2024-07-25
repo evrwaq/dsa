@@ -57,6 +57,25 @@ func TestRemoveVertex(t *testing.T) {
 	if edges != nil {
 		t.Errorf("Expected nil, got %v", edges)
 	}
+
+	al.AddVertex("A")
+	al.AddVertex("B")
+	al.AddVertex("C")
+	al.AddEdge("A", "B")
+	al.AddEdge("B", "C")
+	al.AddEdge("A", "C")
+
+	al.RemoveVertex("B")
+
+	edgesA := al.GetEdges("A")
+	if len(edgesA) != 1 || edgesA[0] != "C" {
+		t.Errorf("Expected edges of A to be [C], got %v", edgesA)
+	}
+
+	edgesC := al.GetEdges("C")
+	if len(edgesC) != 0 {
+		t.Errorf("Expected edges of C to be [], got %v", edgesC)
+	}
 }
 
 func TestRemoveEdge(t *testing.T) {
