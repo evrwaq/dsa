@@ -58,3 +58,16 @@ func TestRemoveVertex(t *testing.T) {
 		t.Errorf("Expected nil, got %v", edges)
 	}
 }
+
+func TestRemoveEdge(t *testing.T) {
+	graph := ds.NewGraph()
+	graph.AddVertex("A")
+	graph.AddVertex("B")
+	graph.AddEdge("A", "B")
+	graph.RemoveEdge("A", "B")
+
+	edges := graph.GetEdges("A")
+	if len(edges) != 0 {
+		t.Errorf("Expected 0 edges, got %d", len(edges))
+	}
+}
