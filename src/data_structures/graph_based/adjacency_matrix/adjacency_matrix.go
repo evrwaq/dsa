@@ -17,3 +17,14 @@ func NewAdjacencyMatrix() *AdjacencyMatrix {
 func (am *AdjacencyMatrix) GetVertices() []string {
 	return am.names
 }
+
+func (am *AdjacencyMatrix) AddVertex(vertex string) {
+	if _, exists := am.indices[vertex]; !exists {
+		am.indices[vertex] = len(am.names)
+		am.names = append(am.names, vertex)
+		for i := range am.matrix {
+			am.matrix[i] = append(am.matrix[i], false)
+		}
+		am.matrix = append(am.matrix, make([]bool, len(am.names)))
+	}
+}
