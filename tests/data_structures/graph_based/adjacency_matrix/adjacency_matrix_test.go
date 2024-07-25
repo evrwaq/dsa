@@ -58,3 +58,16 @@ func TestRemoveVertex(t *testing.T) {
 		t.Errorf("Expected nil, got %v", edges)
 	}
 }
+
+func TestRemoveEdge(t *testing.T) {
+	am := ds.NewAdjacencyMatrix()
+	am.AddVertex("A")
+	am.AddVertex("B")
+	am.AddEdge("A", "B")
+	am.RemoveEdge("A", "B")
+
+	edges := am.GetEdges("A")
+	if len(edges) != 0 {
+		t.Errorf("Expected 0 edges, got %d", len(edges))
+	}
+}
