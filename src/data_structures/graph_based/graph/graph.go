@@ -19,10 +19,29 @@ func (g *Graph) AddVertex(vertex string) {
 	}
 }
 
+func (g *Graph) AddEdge(from, to string) {
+	if _, exists := g.vertices[from]; exists {
+		if _, exists := g.vertices[to]; exists {
+			g.edges[from][to] = struct{}{}
+		}
+	}
+}
+
 func (g *Graph) GetVertices() []string {
 	vertices := make([]string, 0, len(g.vertices))
 	for vertex := range g.vertices {
 		vertices = append(vertices, vertex)
 	}
 	return vertices
+}
+
+func (g *Graph) GetEdges(vertex string) []string {
+	if _, exists := g.edges[vertex]; exists {
+		edges := make([]string, 0, len(g.edges[vertex]))
+		for edge := range g.edges[vertex] {
+			edges = append(edges, edge)
+		}
+		return edges
+	}
+	return nil
 }
