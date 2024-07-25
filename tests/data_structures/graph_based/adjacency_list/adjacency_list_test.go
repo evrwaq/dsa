@@ -33,3 +33,11 @@ func TestAddEdge(t *testing.T) {
 		t.Errorf("Expected edge from A to B, got %v", edges)
 	}
 }
+
+func TestGetEdgesNonExistentVertex(t *testing.T) {
+	al := ds.NewAdjacencyList()
+	edges := al.GetEdges("NonExistent")
+	if edges != nil {
+		t.Errorf("Expected nil, got %v", edges)
+	}
+}
