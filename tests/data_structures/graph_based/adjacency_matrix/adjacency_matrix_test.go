@@ -71,3 +71,27 @@ func TestRemoveEdge(t *testing.T) {
 		t.Errorf("Expected 0 edges, got %d", len(edges))
 	}
 }
+
+func TestAreVerticesConnected(t *testing.T) {
+	am := ds.NewAdjacencyMatrix()
+	am.AddVertex("A")
+	am.AddVertex("B")
+	am.AddVertex("C")
+	am.AddEdge("A", "B")
+
+	if !am.AreVerticesConnected("A", "B") {
+		t.Errorf("Expected vertices A and B to be connected")
+	}
+
+	if am.AreVerticesConnected("A", "C") {
+		t.Errorf("Expected vertices A and C to not be connected")
+	}
+
+	if am.AreVerticesConnected("B", "A") {
+		t.Errorf("Expected vertices B and A to not be connected (directed graph)")
+	}
+
+	if am.AreVerticesConnected("A", "NonExistent") {
+		t.Errorf("Expected vertices A and NonExistent to not be connected")
+	}
+}
