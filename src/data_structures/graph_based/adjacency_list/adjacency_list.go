@@ -23,3 +23,18 @@ func (al *AdjacencyList) AddVertex(vertex string) {
 		al.vertices[vertex] = []string{}
 	}
 }
+
+func (al *AdjacencyList) AddEdge(from, to string) {
+	if _, exists := al.vertices[from]; exists {
+		if _, exists := al.vertices[to]; exists {
+			al.vertices[from] = append(al.vertices[from], to)
+		}
+	}
+}
+
+func (al *AdjacencyList) GetEdges(vertex string) []string {
+	if edges, exists := al.vertices[vertex]; exists {
+		return edges
+	}
+	return nil
+}
