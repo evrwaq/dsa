@@ -12,3 +12,12 @@ func TestNewAdjacencyList(t *testing.T) {
 		t.Errorf("Expected 0 vertices, got %d", len(al.GetVertices()))
 	}
 }
+
+func TestAddVertex(t *testing.T) {
+	al := ds.NewAdjacencyList()
+	al.AddVertex("A")
+	vertices := al.GetVertices()
+	if len(vertices) != 1 || vertices[0] != "A" {
+		t.Errorf("Expected vertex A, got %v", vertices)
+	}
+}
