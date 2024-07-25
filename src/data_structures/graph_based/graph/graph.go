@@ -45,3 +45,13 @@ func (g *Graph) GetEdges(vertex string) []string {
 	}
 	return nil
 }
+
+func (g *Graph) RemoveVertex(vertex string) {
+	if _, exists := g.vertices[vertex]; exists {
+		delete(g.vertices, vertex)
+		delete(g.edges, vertex)
+		for v := range g.edges {
+			delete(g.edges[v], vertex)
+		}
+	}
+}
