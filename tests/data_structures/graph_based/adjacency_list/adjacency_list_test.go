@@ -71,3 +71,34 @@ func TestRemoveEdge(t *testing.T) {
 		t.Errorf("Expected 0 edges, got %d", len(edges))
 	}
 }
+
+func TestBFS(t *testing.T) {
+	al := ds.NewAdjacencyList()
+	al.AddVertex("A")
+	al.AddVertex("B")
+	al.AddVertex("C")
+	al.AddVertex("D")
+	al.AddEdge("A", "B")
+	al.AddEdge("A", "C")
+	al.AddEdge("B", "D")
+	al.AddEdge("C", "D")
+
+	expectedOrder := []string{"A", "B", "C", "D"}
+	order := al.BFS("A")
+
+	if !equal(order, expectedOrder) {
+		t.Errorf("Expected BFS order %v, got %v", expectedOrder, order)
+	}
+}
+
+func equal(a, b []string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
