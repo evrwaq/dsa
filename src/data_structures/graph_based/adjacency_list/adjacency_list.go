@@ -17,3 +17,9 @@ func (al *AdjacencyList) GetVertices() []string {
 	}
 	return vertices
 }
+
+func (al *AdjacencyList) AddVertex(vertex string) {
+	if _, exists := al.vertices[vertex]; !exists {
+		al.vertices[vertex] = []string{}
+	}
+}
