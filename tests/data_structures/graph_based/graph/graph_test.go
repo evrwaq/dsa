@@ -21,3 +21,15 @@ func TestAddVertex(t *testing.T) {
 		t.Errorf("Expected vertex A, got %v", vertices)
 	}
 }
+
+func TestAddEdge(t *testing.T) {
+	graph := ds.NewGraph()
+	graph.AddVertex("A")
+	graph.AddVertex("B")
+	graph.AddEdge("A", "B")
+
+	edges := graph.GetEdges("A")
+	if len(edges) != 1 || edges[0] != "B" {
+		t.Errorf("Expected edge from A to B, got %v", edges)
+	}
+}
