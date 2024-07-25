@@ -55,3 +55,9 @@ func (g *Graph) RemoveVertex(vertex string) {
 		}
 	}
 }
+
+func (g *Graph) RemoveEdge(from, to string) {
+	if _, exists := g.edges[from]; exists {
+		delete(g.edges[from], to)
+	}
+}
