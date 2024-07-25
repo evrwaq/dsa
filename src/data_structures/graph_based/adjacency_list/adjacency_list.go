@@ -60,3 +60,27 @@ func (al *AdjacencyList) RemoveEdge(from, to string) {
 		}
 	}
 }
+
+func (al *AdjacencyList) BFS(start string) []string {
+	var result []string
+	visited := make(map[string]bool)
+	queue := []string{start}
+
+	for len(queue) > 0 {
+		vertex := queue[0]
+		queue = queue[1:]
+
+		if !visited[vertex] {
+			visited[vertex] = true
+			result = append(result, vertex)
+
+			for _, neighbor := range al.vertices[vertex] {
+				if !visited[neighbor] {
+					queue = append(queue, neighbor)
+				}
+			}
+		}
+	}
+
+	return result
+}
