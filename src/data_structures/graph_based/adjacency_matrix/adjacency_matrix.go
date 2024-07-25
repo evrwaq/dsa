@@ -28,3 +28,24 @@ func (am *AdjacencyMatrix) AddVertex(vertex string) {
 		am.matrix = append(am.matrix, make([]bool, len(am.names)))
 	}
 }
+
+func (am *AdjacencyMatrix) AddEdge(from, to string) {
+	fromIndex, fromExists := am.indices[from]
+	toIndex, toExists := am.indices[to]
+	if fromExists && toExists {
+		am.matrix[fromIndex][toIndex] = true
+	}
+}
+
+func (am *AdjacencyMatrix) GetEdges(vertex string) []string {
+	if index, exists := am.indices[vertex]; exists {
+		edges := []string{}
+		for i, connected := range am.matrix[index] {
+			if connected {
+				edges = append(edges, am.names[i])
+			}
+		}
+		return edges
+	}
+	return nil
+}
