@@ -95,3 +95,32 @@ func TestAreVerticesConnected(t *testing.T) {
 		t.Errorf("Expected vertices A and NonExistent to not be connected")
 	}
 }
+
+func TestVertexDegree(t *testing.T) {
+	am := ds.NewAdjacencyMatrix()
+	am.AddVertex("A")
+	am.AddVertex("B")
+	am.AddVertex("C")
+	am.AddEdge("A", "B")
+	am.AddEdge("A", "C")
+
+	degreeA := am.VertexDegree("A")
+	if degreeA != 2 {
+		t.Errorf("Expected degree of vertex A to be 2, got %d", degreeA)
+	}
+
+	degreeB := am.VertexDegree("B")
+	if degreeB != 0 {
+		t.Errorf("Expected degree of vertex B to be 0, got %d", degreeB)
+	}
+
+	degreeC := am.VertexDegree("C")
+	if degreeC != 0 {
+		t.Errorf("Expected degree of vertex C to be 0, got %d", degreeC)
+	}
+
+	degreeNonExistent := am.VertexDegree("NonExistent")
+	if degreeNonExistent != -1 {
+		t.Errorf("Expected degree of non-existent vertex to be -1, got %d", degreeNonExistent)
+	}
+}
