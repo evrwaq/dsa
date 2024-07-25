@@ -49,3 +49,19 @@ func (am *AdjacencyMatrix) GetEdges(vertex string) []string {
 	}
 	return nil
 }
+
+func (am *AdjacencyMatrix) RemoveVertex(vertex string) {
+	if index, exists := am.indices[vertex]; exists {
+		delete(am.indices, vertex)
+		am.names = append(am.names[:index], am.names[index+1:]...)
+
+		for i := range am.matrix {
+			am.matrix[i] = append(am.matrix[i][:index], am.matrix[i][index+1:]...)
+		}
+		am.matrix = append(am.matrix[:index], am.matrix[index+1:]...)
+
+		for i := index; i < len(am.names); i++ {
+			am.indices[am.names[i]] = i
+		}
+	}
+}
