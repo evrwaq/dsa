@@ -84,3 +84,28 @@ func (al *AdjacencyList) BFS(start string) []string {
 
 	return result
 }
+
+func (al *AdjacencyList) DFS(start string) []string {
+	var result []string
+	visited := make(map[string]bool)
+	stack := []string{start}
+
+	for len(stack) > 0 {
+		vertex := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if !visited[vertex] {
+			visited[vertex] = true
+			result = append(result, vertex)
+
+			for i := len(al.vertices[vertex]) - 1; i >= 0; i-- {
+				neighbor := al.vertices[vertex][i]
+				if !visited[neighbor] {
+					stack = append(stack, neighbor)
+				}
+			}
+		}
+	}
+
+	return result
+}
