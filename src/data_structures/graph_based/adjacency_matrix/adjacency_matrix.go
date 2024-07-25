@@ -82,3 +82,17 @@ func (am *AdjacencyMatrix) AreVerticesConnected(from, to string) bool {
 	}
 	return false
 }
+
+func (am *AdjacencyMatrix) VertexDegree(vertex string) int {
+	index, exists := am.indices[vertex]
+	if !exists {
+		return -1
+	}
+	degree := 0
+	for _, connected := range am.matrix[index] {
+		if connected {
+			degree++
+		}
+	}
+	return degree
+}
