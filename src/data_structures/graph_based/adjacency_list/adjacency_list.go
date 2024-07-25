@@ -38,3 +38,15 @@ func (al *AdjacencyList) GetEdges(vertex string) []string {
 	}
 	return nil
 }
+
+func (al *AdjacencyList) RemoveVertex(vertex string) {
+	delete(al.vertices, vertex)
+	for v := range al.vertices {
+		edges := al.vertices[v]
+		for i := len(edges) - 1; i >= 0; i-- {
+			if edges[i] == vertex {
+				al.vertices[v] = append(edges[:i], edges[i+1:]...)
+			}
+		}
+	}
+}
