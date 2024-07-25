@@ -21,3 +21,15 @@ func TestAddVertex(t *testing.T) {
 		t.Errorf("Expected vertex A, got %v", vertices)
 	}
 }
+
+func TestAddEdge(t *testing.T) {
+	al := ds.NewAdjacencyList()
+	al.AddVertex("A")
+	al.AddVertex("B")
+	al.AddEdge("A", "B")
+
+	edges := al.GetEdges("A")
+	if len(edges) != 1 || edges[0] != "B" {
+		t.Errorf("Expected edge from A to B, got %v", edges)
+	}
+}
