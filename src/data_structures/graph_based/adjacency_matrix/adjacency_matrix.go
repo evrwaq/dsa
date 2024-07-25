@@ -65,3 +65,11 @@ func (am *AdjacencyMatrix) RemoveVertex(vertex string) {
 		}
 	}
 }
+
+func (am *AdjacencyMatrix) RemoveEdge(from, to string) {
+	fromIndex, fromExists := am.indices[from]
+	toIndex, toExists := am.indices[to]
+	if fromExists && toExists {
+		am.matrix[fromIndex][toIndex] = false
+	}
+}
