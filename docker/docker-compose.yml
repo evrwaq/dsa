@@ -1,0 +1,10 @@
+services:
+  app:
+    container_name: dsa
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    working_dir: /app
+    command: /app/main
+    stdin_open: true
+    tty: true
