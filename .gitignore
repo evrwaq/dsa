@@ -1,0 +1,49 @@
+# 🔹 Binaries and compiled files
+*.exe
+*.out
+*.o
+*.a
+*.so
+*.dll
+
+# 🔹 Go build cache
+/bin/
+/pkg/
+*.test
+
+# 🔹 Go dependencies (avoid tracking `vendor/` unless using `go mod vendor`)
+vendor/
+
+# 🔹 Dependency management files
+go.sum
+
+# 🔹 Test coverage reports (generated locally)
+tests/coverage.out
+
+# 🔹 Logs, debugging, and reports
+*.log
+*.trace
+*.prof
+*.svg  # CPU/memory profiling (pprof)
+*.cov   # Alternative test coverage files
+
+# 🔹 SonarCloud and IDE settings
+.sonar/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 🔹 Docker files (only cache and temporary files)
+docker/.env
+docker/.cache/
+docker/.temp/
+
+# 🔹 GitHub Actions and CI/CD
+.github/workflows/*.log
+.github/workflows/*.cache
+
+# 🔹 Temporary and environment files
+.env
+.DS_Store
+Thumbs.db
