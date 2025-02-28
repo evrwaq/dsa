@@ -9,4 +9,3 @@ func Hello() string {
 func PrintHello() {
 	fmt.Println(Hello())
 }
-	

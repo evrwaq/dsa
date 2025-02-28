@@ -11,6 +11,10 @@ func TestHello(t *testing.T) {
 	result := example.Hello()
 
 	if result != expected {
-		t.Errorf("Expected: %s, Result: %s", expected, result)
+		t.Errorf("expected %q but got %q", expected, result)
 	}
+}
+
+func TestPrintHello(t *testing.T) {
+	example.PrintHello()
 }
