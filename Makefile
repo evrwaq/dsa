@@ -1,4 +1,4 @@
-.PHONY: build run stop clean logs shell
+.PHONY: build run stop clean logs shell test coverage
 
 SERVICE=app
 
@@ -19,3 +19,9 @@ logs:
 
 shell:
 	docker-compose -f docker/docker-compose.yml run --rm $(SERVICE) sh
+
+test:
+	go test -v ./tests/...
+
+coverage:
+	go test -coverprofile=tests/coverage.out ./internal/...
